@@ -13,9 +13,10 @@
 
 Route::get('/', function()
 {
-	return View::make('hello');
+	return View::make('login');
 });
-Route::get('me', function()
-{
-	return "Me haha";
-});
+
+
+Route::get('/addadmin', 'AddFirstAdminController@makeView');
+
+Route::post('/addadmin', 'AddFirstAdminController@makeViewComplete');
