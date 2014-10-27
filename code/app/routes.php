@@ -11,12 +11,18 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('login');
+//Route::get('/', 'LoginController@home');
+
+Route::get('/', 'LoginController@home');
+
+Route::get('/login', 'LoginController@login');
+
+Route::post('/login', 'LoginController@authen');
+
+Route::post('/logout', 'LoginController@logout');
+
+/*
+Route::get('/test', function() {
+return View::make('test');
 });
-
-
-Route::get('/addadmin', 'AddFirstAdminController@makeView');
-
-Route::post('/addadmin', 'AddFirstAdminController@makeViewComplete');
+*/

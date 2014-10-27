@@ -1,26 +1,75 @@
-<?php
+<?php 
+	class User{
+		private $id;
+		private $role;
+		private $username;
+		private $password;
 
-use Illuminate\Auth\UserTrait;
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\Reminders\RemindableTrait;
-use Illuminate\Auth\Reminders\RemindableInterface;
+		public function __construct(){
+			$this->id=NULL;
+			$this->username=NULL;
+			$this->password=NULL;
+		}
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+//-----------------------------------------
+// get set function
 
-	use UserTrait, RemindableTrait;
+		public function getId(){
+			return $this->id;
+		}
+		public function getUsername(){
+			return $this->username;
+		}
+		public function getPassword(){
+			return $this->password;
+		}
+		public function getRole($tmp){
+			return $this->role;
+		}
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
-	protected $table = 'users';
+		//- - - - - - - - - - - - - - - - - 
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
-	protected $hidden = array('password', 'remember_token');
+		public function setId($tmp){
+			$this->id=$tmp;
+		}
+		public function setUsername($tmp){
+			$this->username=$tmp;
+		}
+		public function setPassword($tmp){
+			$this->password=$tmp;
+		}
+		public function setRole($tmp){
+			$this->role=$tmp;
+		}
 
-}
+//-----------------------------------------
+// get User
+		public static function getUser($id){
+			$userDbTmp = UserDB::find($id);
+			$userObj = new User();
+			if($userDbTmp!=NULL){
+				$userObj->setId($userDbTmp->id);
+				$userObj->setUsername($userDbTmp->username);
+				$userObj->setPassword($userDbTmp->password);
+				return $userObj;
+			}
+			else {
+				return NULL;
+			}
+
+		}
+//-----------------------------------------
+// set User
+		public function updateUser(){
+			$userDbTmp = UserDB::find($this->getId());
+			$userDbTmp->username = $this->getUser();
+			$userDbTmp->password = $this->getPassword();
+			$userDbTmp->save();
+		}
+
+//-----------------------------------------
+//
+
+//-----------------------------------------
+	}
+?>
