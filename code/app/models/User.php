@@ -9,6 +9,7 @@
 			$this->id=NULL;
 			$this->username=NULL;
 			$this->password=NULL;
+			$this->role=NULL;
 		}
 
 //-----------------------------------------
@@ -23,7 +24,7 @@
 		public function getPassword(){
 			return $this->password;
 		}
-		public function getRole($tmp){
+		public function getRole(){
 			return $this->role;
 		}
 
@@ -51,6 +52,7 @@
 				$userObj->setId($userDbTmp->id);
 				$userObj->setUsername($userDbTmp->username);
 				$userObj->setPassword($userDbTmp->password);
+				$userObj->setRole($userDbTmp->role);
 				return $userObj;
 			}
 			else {
@@ -64,11 +66,26 @@
 			$userDbTmp = UserDB::find($this->getId());
 			$userDbTmp->username = $this->getUser();
 			$userDbTmp->password = $this->getPassword();
+			$userDbTmp->role = $this->getRole();
 			$userDbTmp->save();
 		}
 
 //-----------------------------------------
-//
+// coppy constructor
+		public function coppyUser($tmp){
+			$this->id=$tmp->getId();
+			$this->role=$tmp->getRole();
+			$this->username=$tmp->getUsername();
+			$this->password=$tmp->getPassword();
+		}
+
+//-----------------------------------------
+// print line
+		public function println(){
+			echo 	"Username : ".$this->username.
+					"\nPassword : ".$this->password.
+					"\nRole : ".$this->role."\n";
+		}
 
 //-----------------------------------------
 	}

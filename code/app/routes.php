@@ -21,6 +21,12 @@ Route::post('/login', 'LoginController@authen');
 
 Route::post('/logout', 'LoginController@logout');
 
+Route::get('/adduser', 'AdminController@viewAdduser');
+
+Route::post('/adduser', 'AdminController@adduser');
+
+Route::post('/createAdmin', 'LoginController@createAdmin');
+
 /*
 Route::get('/test', function() {
 return View::make('test');
