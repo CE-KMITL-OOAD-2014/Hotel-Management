@@ -9,12 +9,8 @@
 	<br>password : <input type="password" name="password">
 	<br>retype password : <input type="password" name="retypepassword">
 	<!-- ตรงนี้ลีเอาใส่ไว้เป็น dropdown นะ ดูใน bootstrap -->
-	<br>role :<br>
-	<input type="radio" name="role" value="manager" checked >manager<br>
-	<input type="radio" name="role" value="receptionist" >receptionist<br>
-	<input type="radio" name="role" value="kitchen" >kitchen<br>
-	<input type="radio" name="role" value="waiter" >waiter<br>
-	<input type="radio" name="role" value="maid" >maid<br>
+	<br>role :
+	<br><input type="radio" name="role" value="kitchen">Kitchen<br>
 	<!---->
 	<br>staffID : <input type="text" name="staffID">
 	<br>name : <input type="text" name="name">
