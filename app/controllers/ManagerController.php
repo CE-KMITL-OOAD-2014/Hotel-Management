@@ -1,11 +1,11 @@
 <?php
-	class AdminController extends BaseController{
-//----------------------------------------------------------
-		public function viewAdduser(){
+	class ManagerController extends BaseController{
+//----------------------------------------------------------		
+		public function viewAddRoom(){
 			if(Session::get('user', 'null')!='null'){
 				$user = unserialize(Session::get('user'));
-				if($user->getRole()=="admin"){
-					return View::make('admin-adduser');
+				if($user->getRole()=="manager"){
+					return View::make('manager-addRoom');
 				}
 				else{
 					Session::forget('user');
@@ -19,12 +19,12 @@
 
 //----------------------------------------------------------
 
-		public function adduser(){
+		public function addRoom(){
 			if(Session::get('user', 'null')!='null'){
 				$user = unserialize(Session::get('user'));
-				if($user->getRole()=="admin"){
+				if($user->getRole()=="manager"){
 					$data = Input::all();
-					$user->adduser($data);
+					$user->addRoom($data);
 					return Redirect::to('/');
 				}
 				else{
@@ -38,4 +38,4 @@
 		}
 
 //----------------------------------------------------------
-}
+	}

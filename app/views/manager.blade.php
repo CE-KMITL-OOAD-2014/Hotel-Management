@@ -3,10 +3,10 @@
 	<title>test</title>
 </head>
 <body>
-	<h1>Admin Panel</h1>
+	<h1>Manager Panel</h1>
 	<br>
 	<br>
-	<a href="/adduser"><button>Adduser</button></a>
+	<a href="/addRoom"><button>Add Room</button></a>
 	<br>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
