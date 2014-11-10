@@ -18,9 +18,9 @@ class CustomerDBs extends Migration {
             $table->engine = 'InnoDB';
  
             $table->increments('id');
-			$table->integer('customerBillingID');
+			$table->integer('billNumber');
 			$table->string('name');
-			$table->string('surename');
+			$table->string('surname');
 			$table->integer('nationalID');
 			$table->string('detail');
 			$table->boolean('state');

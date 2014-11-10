@@ -2,11 +2,41 @@
 class Request
 {
 	private $id;
+	private $type;
 	private $room;
-	private $active;
-	private $acceptorStaffID;
-	private $accepted;
-	private $mealID;
+	private $billNumber;
+	private $customerServiceID;
+	private $state;
+
+	/*
+	type : 1 = clean
+		 : 2 = meal
+
+	State Description :
+		Meal :
+				add | cooking | act Serve | served | complete | cancel
+			0	1		0			0			0		0			0
+			1	1		1			0			0		0			0
+			2	1		1			1			0		0			0
+			2	1		1			1			1		0			0
+			3 	1		1			1			1		1			0
+			4	1		0			0			0		0			1
+			5	1		1			0			0		0			1
+			6	1		1			1			0		0			1
+			7	1		1			1			1		0			1
+
+		Clean :
+				add | accept | complete | cancel
+			0	1		0			0		0
+			1	1		1			0		0
+			2	1		1			1		0
+			3 	1		0			0		1
+			4	1		1			0		1
+
+
+	*** use customerServiceID for refer to user
+	*** use billNumber to add Bill(will do after this)
+	*/
 
 	function __construct()
 	{

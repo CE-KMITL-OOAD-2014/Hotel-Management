@@ -5,10 +5,10 @@ class GlobalRepository {
 	// get data from database
 
 	public static function getBillNumber(){
-		$tmp = GlobalDB::find(1);
-		$tmp->data = ($tmp->data)+1;
-		$tmp->save();
-		return $tmp->data;		
+		$tmp = GlobalDB::where('name','=','billNumber')->get();
+		$tmp[0]->data = ($tmp[0]->data)+1;
+		$tmp[0]->save();
+		return $tmp[0]->data;		
 	}
 
 }

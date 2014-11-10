@@ -80,7 +80,13 @@ class CustomerServiceRepository {
 	public static function getRoom($id){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
-			return $tmp->Room;
+			//$test = new GlobalDB();
+			//$test->name = 1;
+			//$test->data = $tmp->Room;
+			//$test->save();
+
+			return $tmp->room;
+
 		}
 		else {
 			return NULL;
@@ -107,8 +113,19 @@ class CustomerServiceRepository {
 		}		
 	}
 
+	public static function getBillNumber($id){
+		$tmp = CustomerServiceDB::find($id);
+		if($tmp!=NULL){
+			return $tmp->billNumber;
+		}
+		else {
+			return NULL;
+		}		
+	}
+
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	// Seve data to database
+	// all get, set in repo class use it own id in DB, not from parent DB
 
 	public static function setUserID($id,$data){
 		$tmp = CustomerServiceDB::find($id);
@@ -149,6 +166,15 @@ class CustomerServiceRepository {
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			$tmp->mealReqID=$data;
+			$tmp->save();
+		}
+		else {}
+	}
+
+	public static function setBillNumber($id,$data){
+		$tmp = CustomerServiceDB::find($id);
+		if($tmp!=NULL){
+			$tmp->billNumber=$data;
 			$tmp->save();
 		}
 		else {}

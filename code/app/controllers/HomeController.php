@@ -16,6 +16,9 @@
 				else if($user->getRole()=="receptionist"){
 					return View::make('receptionist');
 				}
+				else if($user->getRole()=="kitchen"){
+					return View::make('Kitchen');
+				}
 				else{
 					Session::forget('user');
 					return Redirect::to('/');
@@ -52,8 +55,17 @@
 					else if($userDbTmp[0]->role=='receptionist'){
 						$userTmp = Receptionist::getReceptionist($userDbTmp[0]->id);
 					}
+					else if($userDbTmp[0]->role=='kitchen'){
+						$userTmp = Kitchen::getKitchen($userDbTmp[0]->id);
+					}
 					else if($userDbTmp[0]->role=='customer'){
-						$userTmp = CustomerService::getCustomer($userDbTmp[0]->id);
+						$userTmp = CustomerService::getCustomerService($userDbTmp[0]->id);
+						if($userTmp->getState()){
+
+						}
+						else{
+							return Redirect::to('/');
+						}
 					}
 					Session::put('user', serialize($userTmp));
 				}

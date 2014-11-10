@@ -37,6 +37,10 @@ Route::get('/checkin', 'ReceptionistController@viewCheckin');
 
 Route::post('/checkin', 'ReceptionistController@checkin');
 
+Route::get('/addMeal', 'KitchenController@viewAddMeal');
+
+Route::post('/addMeal', 'KitchenController@addMeal');
+
 Route::get('/addGuest', 'ReceptionistController@viewAddGuest');
 
 Route::post('/addGuest', 'ReceptionistController@addGuest');

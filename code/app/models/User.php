@@ -8,10 +8,10 @@
 //-----------------------------------------
 // construction
 		public function __construct(){
-			$this->id=NULL;
-			$this->username=NULL;
-			$this->password=NULL;
-			$this->role=NULL;
+			$id=NULL;
+			$username=NULL;
+			$password=NULL;
+			$role=NULL;
 		}
 
 //-----------------------------------------

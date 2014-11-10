@@ -41,10 +41,10 @@ class CustomerRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get data from database
 
-	public static function getCustomerBillingID($id){
+	public static function getBillNumber($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
-			return $tmp->customerBillingID;
+			return $tmp->billNumber;
 		}
 		else {
 			return NULL;
@@ -59,10 +59,10 @@ class CustomerRepository {
 			return NULL;
 		}
 	}
-	public static function getSurename($id){
+	public static function getSurname($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
-			return $tmp->surename;
+			return $tmp->surname;
 		}
 		else {
 			return NULL;
@@ -99,10 +99,10 @@ class CustomerRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Seve data from database
 
-	public static function setCustomerBillingID($id,$data){
+	public static function setBillNumber($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
-		 	$tmp->customerBillingID=$data;
+		 	$tmp->billNumber=$data;
 		 	$tmp->save();
 	 	}
 	 	else{}
@@ -115,10 +115,10 @@ class CustomerRepository {
 	 	}
 	 	else{}
 	}
-	public static function setSurename($id,$data){
+	public static function setSurname($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
-		 	$tmp->surename=$data;
+		 	$tmp->surname=$data;
 		 	$tmp->save();
 	 	}
 	 	else{}

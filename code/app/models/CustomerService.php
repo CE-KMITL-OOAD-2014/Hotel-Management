@@ -4,14 +4,20 @@ class CustomerService extends User{
 	private $room;
 	private $cleanReqID;
 	private $mealReqID;
+	private $billNumber;
 //-----------------------------------------
 //Constructor
 	public function __construct(){
 		parent::__construct();
 		$state = false;
+		$room = 0;
+		$cleanReqID = 0;
+		$mealReqID = 0;
+		$billNumber = 0;
 	}
 //-----------------------------------------
-// Get
+// Get customer service Object (use id of the User(parent class) not id of this field)
+
 	public static function getCustomerService($id){
 		if(UserRepository::isExist($id)){
 			$customerObj = new CustomerService();
@@ -23,10 +29,12 @@ class CustomerService extends User{
 			$cusServId = CustomerServiceRepository::getID($customerObj->getUsername());
 			$customerObj->setState(CustomerServiceRepository::getState($cusServId));
 			$customerObj->setRoom(CustomerServiceRepository::getRoom($cusServId));
+			$customerObj->setMealReqID(CustomerServiceRepository::getMealReqID($cusServId));
+			$customerObj->setCleanReqID(CustomerServiceRepository::getCleanReqID($cusServId));
+			$customerObj->setBillNumber(CustomerServiceRepository::getBillNumber($cusServId));
 			return $customerObj;
 		}
 		else{
-
 		}
 	}
 //-----------------------------------------
@@ -38,6 +46,7 @@ class CustomerService extends User{
 		CustomerServiceRepository::setRoom($id, $this->getRoom());
 		CustomerServiceRepository::setCleanReqID($id, $this->getCleanReqID());
 		CustomerServiceRepository::setMealReqID($id, $this->getMealReqID());
+		CustomerServiceRepository::setBillNumber($id, $this->getBillNumber());
 	}
 
 //-----------------------------------------
@@ -57,6 +66,10 @@ class CustomerService extends User{
 		return $this->room;
 	}
 
+	public function getBillNumber(){
+		return $this->billNumber;
+	}
+
 	public function setState($data){
 		$this->state = $data;
 	}
@@ -70,6 +83,10 @@ class CustomerService extends User{
 
 	public function setRoom($data){
 		$this->room = $data;
+	}
+
+	public function setBillNumber($data){
+		$this->billNumber = $data;
 	}
 }
 

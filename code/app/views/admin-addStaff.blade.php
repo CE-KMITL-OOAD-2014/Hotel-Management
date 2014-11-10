@@ -15,7 +15,6 @@
 	<input type="radio" name="role" value="kitchen" >kitchen<br>
 	<input type="radio" name="role" value="waiter" >waiter<br>
 	<input type="radio" name="role" value="maid" >maid<br>
-	<input type="radio" name="role" value="customer" >customer<br>
 	<!---->
 	<br>staffID : <input type="text" name="staffID">
 	<br>name : <input type="text" name="name">

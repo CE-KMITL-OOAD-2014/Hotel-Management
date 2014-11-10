@@ -1,9 +1,9 @@
 <?php 
 class Customer {
 	private $id;
-	private $customerBillingID;
+	private $billNumber;
 	private $name;
-	private $surename;
+	private $surname;
 	private $nationalID;
 	private $detail;
 	private $state;
@@ -13,11 +13,11 @@ class Customer {
 
 	public function __construct(){
 	 	$id = NULL;
-	 	$customerBillingID = NULL;
+	 	$billNumber = NULL;
 	 	$checkin = NULL;
 	 	$checkout = NULL;
 	 	$name = NULL;
-	 	$surename = NULL;
+	 	$surname = NULL;
 	 	$nationalID = NULL;
 	 	$detail = NULL;
 	 	$state = NULL;
@@ -29,14 +29,14 @@ class Customer {
 	public function getId(){
 		return $this->id;
 	}
-	public function getCustomerBillingID(){
-		return $this->customerBillingID;
+	public function getBillNumber(){
+		return $this->billNumber;
 	}
 	public function getName(){
 		return $this->name;
 	}
-	public function getSurename(){
-		return $this->surename;
+	public function getSurname(){
+		return $this->surname;
 	}
 	public function getNationalID(){
 		return $this->nationalID;
@@ -54,14 +54,14 @@ class Customer {
 	public function setId($data){
 		$this->id=$data;
 	}
-	public function setCustomerBillingID($data){
-		$this->customerBillingID=$data;
+	public function setBillNumber($data){
+		$this->billNumber=$data;
 	}
 	public function setName($data){
 		$this->name=$data;
 	}
-	public function setSurename($data){
-		$this->surename=$data;
+	public function setSurname($data){
+		$this->surname=$data;
 	}
 	public function setNationalID($data){
 		$this->nationalID=$data;
@@ -80,9 +80,9 @@ class Customer {
 		if(CustomerRepository::isExist($id)){
 			$obj = new Customer();
 			$obj->setId($id);
-	 		$obj->setCustomerBillingID(CustomerRepository::getCustomerBillingID());
+	 		$obj->setbillNumber(CustomerRepository::getBillNumber());
 	 		$obj->setName(CustomerRepository::getName());
-	 		$obj->setSurename(CustomerRepository::getSurename());
+	 		$obj->setSurname(CustomerRepository::getSurname());
 	 		$obj->setNationalID(CustomerRepository::getNationalID());
 	 		$obj->setDetail(CustomerRepository::getDetail());
 	 		$obj->setState(CustomerRepository::getState());
@@ -97,12 +97,12 @@ class Customer {
 // save Customer
 		public function setCustomer(){
 			if(CustomerRepository::isExist($this->getId())){
-	 			customerRepository::setCustomerBillingID($this->customerBillingID);
-	 			customerRepository::setName($this->name);
-	 			customerRepository::setSurename($this->surename);
-	 			customerRepository::setNationalID($this->nationalID);
-	 			customerRepository::setDetail($this->detail);
-	 			customerRepository::setState($this->state);
+	 			customerRepository::setBillNumber($this->getBillNumber());
+	 			customerRepository::setName($this->getName());
+	 			customerRepository::setSurname($this->getSurname());
+	 			customerRepository::setNationalID($this->getNationalID());
+	 			customerRepository::setDetail($this->getDetail());
+	 			customerRepository::setState($this->getState());
 			}
 			else {
 			}

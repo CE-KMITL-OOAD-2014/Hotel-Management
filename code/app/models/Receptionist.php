@@ -32,28 +32,31 @@ class Receptionist extends Staff
 	// 2. set room state to unavailable 
 	// 3. create customer object
 
-	public function checkin($room){
+	//DO NOT FORGET!!! customer Service must have it own room number already!!
+
+	public function checkin($room,$billNumber){
 		$id=CustomerServiceRepository::getIDbyRoom($room);
 		$obj = CustomerService::getCustomerService($id);
+		$obj->setBillNumber($billNumber);
 		$obj->setState(true);
 		$obj->saveToDB();
 
 		$roomID = RoomRepository::getID($room);
 		$roomObj = Room::getRoom($roomID);
-		$roomObj->setAvailable(true);
+		$roomObj->setAvailable(false);
 		$roomObj->saveToDB();
 	}
 
-	public function addCustomer($data){
+	public function addGuest($data){
 
 		$id = CustomerRepository::newCustomer();
-		CustomerRepository::setCustomerBillingID($data['billingNumber']);
 		CustomerRepository::setName($id,$data['name']);
-		CustomerRepository::setSurename($id,$data['surename']);
+		CustomerRepository::setSurname($id,$data['surname']);
 		CustomerRepository::setNationalID($id,$data['nationalID']);
 		CustomerRepository::setDetail($id,$data['detail']);
-		CustomerRepository::setState($id,$data['state']);
-	}
+		CustomerRepository::setBillNumber($id,$data['billNumber']);
+		CustomerRepository::setState($id,true);
+	} 
 
 //-----------------------------------------
 }

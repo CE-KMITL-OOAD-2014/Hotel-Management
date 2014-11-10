@@ -11,16 +11,16 @@ class Room
 	private $maintainancing;
 	private $clean;
 
-	function __construct()
+	public function __construct()
 	{
-		$this->id=NULL;
-		$this->roomNumber=NULL;
-		$this->price=NULL;
-		$this->bed=NULL;
-		$this->roomType=NULL;
-		$this->available=NULL;
-		$this->maintainancing=NULL;
-		$this->clean=NULL;
+		$id=NULL;
+		$roomNumber=NULL;
+		$price=NULL;
+		$bed=NULL;
+		$roomType=NULL;
+		$available=NULL;
+		$maintainancing=NULL;
+		$clean=NULL;
 	}
 
 //-----------------------------------------

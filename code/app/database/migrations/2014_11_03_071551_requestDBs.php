@@ -20,7 +20,7 @@ class RequestDBs extends Migration {
             $table->increments('id');
 			$table->integer('type');
 			$table->integer('room');
-			$table->integer('customerBillingID');
+			$table->integer('billNumber');
 			$table->integer('customerServiceID');
 			$table->integer('state');
 			$table->string('comment');

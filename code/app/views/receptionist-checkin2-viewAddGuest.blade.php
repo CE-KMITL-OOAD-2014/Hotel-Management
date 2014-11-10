@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1>Add Guest</h1>
-<form action="{{ url('/checkin') }}" method="post">	
+<form action="{{ url('/addGuest') }}" method="post">	
 	<br>name : <input type="text" name="name">
 	<br>surname : <input type="text" name="surname">
 	<br>nationalID : <input type="text" name="nationalID">

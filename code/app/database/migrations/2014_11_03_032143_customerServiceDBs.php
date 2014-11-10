@@ -21,6 +21,7 @@ class CustomerServiceDBs extends Migration {
 			$table->integer('userID');
 			$table->integer('cleanReqID');
 			$table->integer('mealReqID');
+			$table->integer('billNumber');
 			$table->integer('room'); 
 			$table->boolean('state');
             $table->timestamps();
