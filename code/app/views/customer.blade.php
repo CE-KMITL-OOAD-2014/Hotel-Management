@@ -7,6 +7,7 @@
 	<br>
 	<br>
 	<br>
+	<a href="/addCleanReq"><button>Cleaning Request</button></a>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>

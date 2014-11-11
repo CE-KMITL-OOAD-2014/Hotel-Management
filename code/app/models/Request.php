@@ -40,14 +40,43 @@ class Request
 
 	function __construct()
 	{
-	 $this->id=NULL;
-	 $this->room=NULL;
-	 $this->active=NULL;
-	 $this->acceptorStaffID=NULL;
-	 $this->accepted=NULL;
-	 $this->mealID=NULL;
+	 	$this->id=NULL;
+	 	$this->type=NULL;
+	 	$this->room=NULL;
+	 	$this->billNumber=NULL;
+	 	$this->customerServiceID=NULL;
+	 	$this->state=NULL;
+	}
+//-----------------------------------------
+// Get
+	public static function getRequest($id){
+		if(RequestRepository::isExist($id)){
+			$obj = new Request();
+			$obj->setId($id);
+	 		$obj->setId(RequestRepository::getId($id));
+	 		$obj->setType(RequestRepository::getType($id));
+	 		$obj->setRoom(RequestRepository::getRoom($id));
+	 		$obj->setBillNumber(RequestRepository::getBillNumber($id));
+	 		$obj->setCustomerServiceID(RequestRepository::getCustomerServiceID($id));
+	 		$obj->setState(RequestRepository::getState($id));
+			return $obj;
+		}
+		else{
+			
+		}
 	}
 
+//-----------------------------------------
+// save
+	public function saveToDB(){
+		//parent::saveToDB();
+		RequestRepository::getType($this->getID(), $this->getType());
+		RequestRepository::getRoom($this->getID(), $this->getRoom());
+		RequestRepository::getBillNumber($this->getID(), $this->getBillNumber());
+		RequestRepository::getCustomerServiceID($this->getID(), $this->getCustomerServiceID());
+		RequestRepository::getState($this->getID(), $this->getState());
+	}
+//-----------------------------------------
 // get
 	public function getId(){
 		return $this->id;

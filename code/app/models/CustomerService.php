@@ -88,6 +88,22 @@ class CustomerService extends User{
 	public function setBillNumber($data){
 		$this->billNumber = $data;
 	}
+
+//-----------------------------------------
+
+	public function addCleanRequest(){
+		$id = RequestRepository::newRequest();
+		RequestRepository::setType($id, 1);
+		RequestRepository::setRoom($id, $this->getRoom());
+		RequestRepository::setBillNumber($id, $this->getBillNumber());
+		RequestRepository::setCustomerServiceID($id, $this->getID());
+		RequestRepository::setState($id, 0);
+
+		$this->setCleanReqID($id);
+		$this->saveToDB();
+	}
+
+//-----------------------------------------
 }
 
 

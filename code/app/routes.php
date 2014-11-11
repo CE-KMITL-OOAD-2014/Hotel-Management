@@ -47,6 +47,12 @@ Route::post('/addGuest', 'ReceptionistController@addGuest');
 
 Route::post('/createAdmin', 'HomeController@createAdmin');
 
+
+
+
+Route::get('/addCleanReq', 'CustomerServiceController@addCleanReq');
+
+//Route::post('/checkin', 'ReceptionistController@checkin');
 /*
 Route::get('/test', function() {
 return View::make('test');
