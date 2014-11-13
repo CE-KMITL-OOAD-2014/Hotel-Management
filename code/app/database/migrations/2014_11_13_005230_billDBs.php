@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TempTests extends Migration {
+class BillDBs extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,14 +13,6 @@ class TempTests extends Migration {
 	public function up()
 	{
 		//
-		Schema::create('tempTestDBs', function($table)
-        {
-            $table->engine = 'InnoDB';
- 
-            $table->increments('id');
-			$table->string('text',999);
-            $table->timestamps();
-        });
 	}
 
 	/**
@@ -31,7 +23,6 @@ class TempTests extends Migration {
 	public function down()
 	{
 		//
-		Schema::drop('tempTestDBs');
 	}
 
 }
