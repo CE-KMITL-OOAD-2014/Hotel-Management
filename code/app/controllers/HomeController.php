@@ -4,6 +4,7 @@
 		public function home(){
 			if(Session::get('user', 'null')!='null'){
 				$user = unserialize(Session::get('user'));
+				
 				if($user->getRole()=="admin"){
 					return View::make('admin');
 				}
@@ -18,6 +19,9 @@
 				}
 				else if($user->getRole()=="kitchen"){
 					return View::make('Kitchen');
+				}
+				else if($user->getRole()=="maid"){
+					return View::make('maid');
 				}
 				else{
 					Session::forget('user');
@@ -47,16 +51,24 @@
 				$userDbTmp = UserDB::where('username','=',$data['username'])->where('password','=',$data['password'])->get();
 				if(count($userDbTmp)!=0){
 					if($userDbTmp[0]->role=='admin'){
-						$userTmp = Admin::getAdmin($userDbTmp[0]->id);
+						$userTmp = new Admin();
+						$userTmp->getAdmin($userDbTmp[0]->id);
 					}
 					else if($userDbTmp[0]->role=='manager'){
-						$userTmp = Manager::getManager($userDbTmp[0]->id);
+						$userTmp = new Manager();
+						$userTmp->getManager($userDbTmp[0]->id);
 					}
 					else if($userDbTmp[0]->role=='receptionist'){
-						$userTmp = Receptionist::getReceptionist($userDbTmp[0]->id);
+						$userTmp = new Receptionist();
+						$userTmp->getReceptionist($userDbTmp[0]->id);
 					}
 					else if($userDbTmp[0]->role=='kitchen'){
-						$userTmp = Kitchen::getKitchen($userDbTmp[0]->id);
+						$userTmp = new Kitchen();
+						$userTmp->getKitchen($userDbTmp[0]->id);
+					}
+					else if($userDbTmp[0]->role=='maid'){
+						$userTmp = new Maid();
+						$userTmp->getMaid($userDbTmp[0]->id);
 					}
 					else if($userDbTmp[0]->role=='customer'){
 						$userTmp = CustomerService::getCustomerService($userDbTmp[0]->id);

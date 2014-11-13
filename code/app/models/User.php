@@ -47,23 +47,20 @@
 
 //-----------------------------------------
 // get User
-		public static function getUser($id){
+		public function getUser($id){
 			if(UserRepository::isExist($id)){
-				$userObj = new User();
-				$userObj->setId($id);
-				$userObj->setUsername(UserRepository::getUsername($id));
-				$userObj->setPassword(UserRepository::getPassword($id));
-				$userObj->setRole(UserRepository::getRole($id));
-				return $userObj;
+				$this->setId($id);
+				$this->setUsername(UserRepository::getUsername($id));
+				$this->setPassword(UserRepository::getPassword($id));
+				$this->setRole(UserRepository::getRole($id));
 			}
 			else {
-				return NULL;
 			}
 
 		}
 //-----------------------------------------
 // save User
-		public function setUser(){
+		public function saveToDB(){
 			if(UserRepository::isExist($this->id)){
 				UserRepository::setUsername($this->id,$this->username);
 				UserRepository::setPassword($this->id,$this->password);

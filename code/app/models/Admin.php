@@ -1,7 +1,4 @@
-<?php 
-/**
-* 
-*/
+<?php
 class Admin extends User
 {
 //-----------------------------------------
@@ -13,14 +10,9 @@ class Admin extends User
 
 //-----------------------------------------
 // Get Admin
-	public static function getAdmin($id){
+	public function getAdmin($id){
 		if(UserRepository::isExist($id)){
-			$adminObj = new Admin();
-			$adminObj->setId($id);
-			$adminObj->setUsername(UserRepository::getUsername($id));
-			$adminObj->setPassword(UserRepository::getPassword($id));
-			$adminObj->setRole(UserRepository::getRole($id));
-			return $adminObj;
+			$this->getUser($id);
 		}
 		else{
 			
@@ -35,22 +27,20 @@ class Admin extends User
 		UserRepository::setUsername($userId,$data['username']);
 		UserRepository::setPassword($userId,$data['password']);
 		UserRepository::setRole($userId,$data['role']);
-		if($data['role']=='admin'){
 
-		}
-		else{
-			$staffId = StaffRepository::newStaff();
-			StaffRepository::setUserID($staffId,$userId);
-			StaffRepository::setStaffID($staffId,$data['staffID']);
-			StaffRepository::setName($staffId,$data['name']);
-			StaffRepository::setIDnumber($staffId,$data['IDnumber']);
-			StaffRepository::setLocation($staffId,$data['location']);
-			StaffRepository::setEmail($staffId,$data['email']);
-			StaffRepository::setTel($staffId,$data['tel']);
+		$staffId = StaffRepository::newStaff();
+		StaffRepository::setUserID($staffId,$userId);
+		StaffRepository::setStaffID($staffId,$data['staffID']);
+		StaffRepository::setName($staffId,$data['name']);
+		StaffRepository::setIDnumber($staffId,$data['IDnumber']);
+		StaffRepository::setLocation($staffId,$data['location']);
+		StaffRepository::setEmail($staffId,$data['email']);
+		StaffRepository::setTel($staffId,$data['tel']);
 
-			if($data['role']=='manager'){
-
-			}
+		if($data['role']=='kitchen'){
+			$kitchenRequestID = StaffRequestRepository::newStaffRequest();
+			StaffRequestRepository::setUserID($kitchenRequestID, $userId);
+			StaffRequestRepository::setRequestID($kitchenRequestID, 0);
 		}
 	}
 //-----------------------------------------

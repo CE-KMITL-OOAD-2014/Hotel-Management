@@ -11,5 +11,10 @@
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>
+
+	<?php 
+		$user = unserialize(Session::get('user'));
+		var_dump($user);
+	 ?>
 </body>
 </html>

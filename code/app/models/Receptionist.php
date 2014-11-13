@@ -12,14 +12,9 @@ class Receptionist extends Staff
 //-----------------------------------------
 // Get Receptionist
 
-	public static function getReceptionist($id){
+	public function getReceptionist($id){
 		if(UserRepository::isExist($id)){
-			$user = new Receptionist();
-			$user->setId($id);
-			$user->setUsername(UserRepository::getUsername($id));
-			$user->setPassword(UserRepository::getPassword($id));
-			$user->setRole(UserRepository::getRole($id));
-			return $user;
+			$this->getStaff($id);
 		}
 		else{
 			

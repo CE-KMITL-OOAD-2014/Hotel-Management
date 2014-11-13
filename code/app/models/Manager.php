@@ -8,22 +8,9 @@ class Manager extends Staff  {
 //-----------------------------------------
 // Get Manager
 
-	public static function getManager($id){
-		if(UserRepository::isExist($id)){
-			$user = new Manager();
-			$user->setId($id);
-			$user->setUsername(UserRepository::getUsername($id));
-			$user->setPassword(UserRepository::getPassword($id));
-			$user->setRole(UserRepository::getRole($id));
-			
-			$staffId = StaffRepository::getID($user->getUsername());
-			$user->setStaffID(StaffRepository::getStaffID($staffId));
-			$user->setName(StaffRepository::getName($staffId));
-			$user->setIDnumber(StaffRepository::getIDnumber($staffId));
-			$user->setLocation(StaffRepository::getLocation($staffId));
-			$user->setEmail(StaffRepository::getEmail($staffId));
-			$user->setTel(StaffRepository::getTel($staffId));
-			return $user;
+	public function getManager($id){
+		if(UserRepository::isExist($id)){		
+			$this->getStaff($id);
 		}
 		else{
 			

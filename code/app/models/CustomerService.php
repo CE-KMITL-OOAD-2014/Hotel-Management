@@ -58,6 +58,7 @@ class CustomerService extends User{
 	public function getCleanReqID(){
 		return $this->cleanReqID;
 	}
+
 	public function getMealReqID(){
 		return $this->mealReqID;
 	}
@@ -100,6 +101,46 @@ class CustomerService extends User{
 		RequestRepository::setState($id, 0);
 
 		$this->setCleanReqID($id);
+		$this->saveToDB();
+	}
+
+//-----------------------------------------
+
+	public function addmealRequest($mealNumber){
+		$id = RequestRepository::newRequest();
+		RequestRepository::setType($id, 2);
+		RequestRepository::setRoom($id, $this->getRoom());
+		RequestRepository::setBillNumber($id, $this->getBillNumber());
+		RequestRepository::setCustomerServiceID($id, $this->getID());
+		RequestRepository::setState($id, 0);
+		RequestRepository::setMealID($id,$mealNumber);
+
+		$this->setMealReqID($id);
+		$this->saveToDB();
+	}
+
+//-----------------------------------------
+
+
+	public function completeClean(){
+		$reqTmp = new Requests();
+		$reqTmp->getRequest($this->getCleanReqID());
+		$reqTmp->setState(2);
+		$reqTmp->saveToDB();
+
+		$this->setCleanReqID(0);
+		$this->saveToDB();
+	}
+
+//-----------------------------------------
+
+	public function completeOrder(){
+		$reqTmp = new Requests();
+		$reqTmp->getRequest($this->getMealReqID());
+		$reqTmp->setState(2);
+		$reqTmp->saveToDB();
+
+		$this->setMealReqID(0);
 		$this->saveToDB();
 	}
 

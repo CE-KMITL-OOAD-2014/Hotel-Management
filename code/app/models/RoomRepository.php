@@ -30,6 +30,7 @@ class RoomRepository{
 		$tmp->save();
 		return $tmp->id;
 	}
+	
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	 public static function getRoomNumber($id){

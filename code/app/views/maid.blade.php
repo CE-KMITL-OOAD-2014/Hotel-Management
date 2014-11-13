@@ -3,18 +3,13 @@
 	<title>test</title>
 </head>
 <body>
-	<h1>Manager Panel</h1>
+	<h1>Maid</h1>
 	<br>
 	<br>
-	<a href="/addRoom"><button>Add Room</button></a>
+	<a href="/checkClean"><button>check request</button></a>
 	<br>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>
-
-	<?php 
-		$user = unserialize(Session::get('user'));
-		var_dump($user);
-	 ?>
 </body>
 </html>

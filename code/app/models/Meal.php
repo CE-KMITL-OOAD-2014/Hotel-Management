@@ -17,16 +17,13 @@ class Meal {
 //-----------------------------------------
 // Get
 
-	public static function getMeal($id){
+	public function getMeal($id){
 		if(MealRepository::isExist($id)){
-			$obj = new Meal();
-			$obj->setId($id);
-			$obj->setName(MealRepository::getName($id));
-			$obj->setPic(MealRepository::getPic($id));
-			$obj->setPrice(MealRepository::getPrice($id));
-			$obj->setDesc(MealRepository::getDesc($id));
-
-			return $obj;
+			$this->setId($id);
+			$this->setName(MealRepository::getName($id));
+			$this->setPic(MealRepository::getPic($id));
+			$this->setPrice(MealRepository::getPrice($id));
+			$this->setDesc(MealRepository::getDesc($id));
 		}
 		else{
 			

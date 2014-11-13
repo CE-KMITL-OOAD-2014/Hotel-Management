@@ -63,6 +63,22 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
+	public static function setMealID($id,$data){
+		$tmp = RequestDB::find($id);
+	 	if($tmp!=NULL){
+		 	$tmp->mealID=$data;
+		 	$tmp->save();
+	 	}
+	 	else{}
+	}
+	public static function setNumber($id,$data){
+		$tmp = RequestDB::find($id);
+	 	if($tmp!=NULL){
+		 	$tmp->number=$data;
+		 	$tmp->save();
+	 	}
+	 	else{}
+	}
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
@@ -106,6 +122,24 @@ class RequestRepository{
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->state;
+		}
+		else {
+			return NULL;
+		}
+	}
+	public static function getMealID($id){
+		$tmp = RequestDB::find($id);
+		if($tmp!=NULL){
+			return $tmp->mealID;
+		}
+		else {
+			return NULL;
+		}
+	}
+	public static function getNumber($id){
+		$tmp = RequestDB::find($id);
+		if($tmp!=NULL){
+			return $tmp->number;
 		}
 		else {
 			return NULL;

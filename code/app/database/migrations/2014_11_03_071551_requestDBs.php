@@ -18,11 +18,13 @@ class RequestDBs extends Migration {
             $table->engine = 'InnoDB';
  
             $table->increments('id');
-			$table->integer('type');
-			$table->integer('room');
-			$table->integer('billNumber');
-			$table->integer('customerServiceID');
-			$table->integer('state');
+			$table->string('type');
+			$table->string('room');
+			$table->string('billNumber');
+			$table->string('customerServiceID');
+			$table->string('state');
+			$table->string('mealID');
+			$table->string('number');
 			$table->string('comment');
             $table->timestamps();
         });

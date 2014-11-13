@@ -60,34 +60,27 @@ class Staff extends User
 	}
 //-----------------------------------------
 // get Staff
-/*
-		public static function getStaff($user){
-			if($user!=NULL){
-				if($user->getRole()=="staff") {
-					$staff = new Staff();
-					$staff = $user->coppyUser();
-					$staff->setStaffID(StaffRepository::getStaffID());
-					$staff->setName(StaffRepository::getName());
-					$staff->setIDnumber(StaffRepository::getIDnumber());
-					$staff->setLocation(StaffRepository::getLocation());
-					$staff->setEmail(StaffRepository::getEmail());
-					$staff->setTel(StaffRepository::getTel());
-					return $staff;
-				}
-				else {
-					return NULL;
-				}
-			}
-			else {
-				return NULL;
-			}
 
+	public function getStaff($id){
+		if(UserRepository::isExist($id)){
+			$this->getUser($id);		
+			$staffId = StaffRepository::getID($this->getUsername());
+			$this->setStaffID(StaffRepository::getStaffID($staffId));
+			$this->setName(StaffRepository::getName($staffId));
+			$this->setLocation(StaffRepository::getLocation($staffId));
+			$this->setEmail(StaffRepository::getEmail($staffId));
+			$this->setTel(StaffRepository::getTel($staffId));
+			$this->setIDnumber(StaffRepository::getIDnumber($id));
+		}
+		else {
 
 		}
-*/
+	}
+
 //-----------------------------------------
 // set Staff
-		public function updateStaff(){
+		public function saveToDB(){
+			parent::saveToDB();
 			$id = StaffRepository::getID($this->getUsername());
 			if(StaffRepository::isExist($id)){
 				StaffRepository::setStaffID($id,$this->getStaffID());
@@ -124,4 +117,29 @@ class Staff extends User
 				"\nTel : ".$this->tel."\n";
 	}
 }
+/*
+		public static function getStaff($user){
+			if($user!=NULL){
+				if($user->getRole()=="staff") {
+					$staff = new Staff();
+					$staff = $user->coppyUser();
+					$staff->setStaffID(StaffRepository::getStaffID());
+					$staff->setName(StaffRepository::getName());
+					$staff->setIDnumber(StaffRepository::getIDnumber());
+					$staff->setLocation(StaffRepository::getLocation());
+					$staff->setEmail(StaffRepository::getEmail());
+					$staff->setTel(StaffRepository::getTel());
+					return $staff;
+				}
+				else {
+					return NULL;
+				}
+			}
+			else {
+				return NULL;
+			}
+
+
+		}
+*/
 ?>

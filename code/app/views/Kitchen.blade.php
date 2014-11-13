@@ -6,10 +6,17 @@
 	<h1>Kitchen</h1>
 	<br>
 	<br>
+	<a href="/checkOrder"><button>check Order</button></a>
+	<br>
 	<a href="/addMeal"><button>Add Meal</button></a>
 	<br>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>
+	<?php 
+		$user = unserialize(Session::get('user'));
+		var_dump($user);
+	 ?>
+	
 </body>
 </html>
