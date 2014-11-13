@@ -37,7 +37,8 @@ class Receptionist extends Staff
 		$obj->saveToDB();
 
 		$roomID = RoomRepository::getID($room);
-		$roomObj = Room::getRoom($roomID);
+		$roomObj = new Room();
+		$rommObj->getRoom($roomID);
 		$roomObj->setAvailable(false);
 		$roomObj->saveToDB();
 	}

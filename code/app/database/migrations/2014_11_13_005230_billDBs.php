@@ -10,9 +10,21 @@ class BillDBs extends Migration {
 	 *
 	 * @return void
 	 */
-	public function up()
+	public function up() 
 	{
 		//
+		Schema::create('billDBs', function($table)
+        {
+            $table->engine = 'InnoDB';
+ 
+            $table->increments('id');
+            $table->string('billNumber');
+           	$table->string('type');
+            $table->string('detail');
+            $table->integer('value');
+            $table->boolean('state');
+			$table->timestamps();
+        });
 	}
 
 	/**
@@ -23,6 +35,7 @@ class BillDBs extends Migration {
 	public function down()
 	{
 		//
+		Schema::drop('billDBs');
 	}
 
 }

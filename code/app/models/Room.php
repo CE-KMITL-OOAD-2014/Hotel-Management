@@ -25,18 +25,16 @@ class Room
 
 //-----------------------------------------
 // Get
-	public static function getRoom($id){
+	public function getRoom($id){
 		if(RoomRepository::isExist($id)){
-			$obj = new Room();
-			$obj->setId($id);
-			$obj->setRoomNumber(RoomRepository::getRoomNumber($id));
-			$obj->setPrice(RoomRepository::getPrice($id));
-			$obj->setBed(RoomRepository::getBed($id));
-			$obj->setRoomType(RoomRepository::getRoomType($id));
-			$obj->setAvailable(RoomRepository::getAvailable($id));
-			$obj->setMaintainancing(RoomRepository::getMaintainancing($id));
-			$obj->setClean(RoomRepository::getClean($id));
-			return $obj;
+			$this->setId($id);
+			$this->setRoomNumber(RoomRepository::getRoomNumber($id));
+			$this->setPrice(RoomRepository::getPrice($id));
+			$this->setBed(RoomRepository::getBed($id));
+			$this->setRoomType(RoomRepository::getRoomType($id));
+			$this->setAvailable(RoomRepository::getAvailable($id));
+			$this->setMaintainancing(RoomRepository::getMaintainancing($id));
+			$this->setClean(RoomRepository::getClean($id));
 		}
 		else{
 			
