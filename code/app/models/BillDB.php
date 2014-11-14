@@ -1,4 +1,4 @@
 <?php 
-	class CustomerDB extends Eloquent{
+	class BillDB extends Eloquent{
 		public $table = 'billDBs';
 	}

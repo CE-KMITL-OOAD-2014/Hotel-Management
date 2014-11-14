@@ -17,7 +17,18 @@ class Bill{
 	}
 
 	//-----------------------------------------------------
+	/*
+	Bill structure :
+		type : 
+			0 : Clean req bill
+			1 : Food req bill
+			2 : Consumed bill
+			3 : Room damaged bill
+		state :
+			0 : not pay
+			1 : paid
 
+	*/
 	public function getId(){
 		return $this->id;
 	}
@@ -71,7 +82,7 @@ class Bill{
 
 	//-----------------------------------------------------
 
-	public function seveToDB(){
+	public function saveToDB(){
 	 	BillRepository::setBillNumber($this->getId(), $this->getBillNumber());
 	 	BillRepository::setType($this->getId(), $this->getType());
 	 	BillRepository::setDetail($this->getId(), $this->getDetail());

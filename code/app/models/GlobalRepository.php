@@ -11,5 +11,10 @@ class GlobalRepository {
 		return $tmp[0]->data;		
 	}
 
+	public static function getCleanCharge(){
+		$tmp = GlobalDB::where('name','=','cleanCharge')->get();
+		return $tmp[0]->data;		
+	}
+
 }
  ?>

@@ -16,7 +16,7 @@ class BillRepository{
 	public static function getID($billNumber){
 		$tmp = BillDB::where('billNumber','=',$billNumber)->get();
 		if(count($tmp)!=0){
-			for($i=0;i$i<count($tmp);$i++){
+			for($i=0;$i<count($tmp);$i++){
 				$idSet[$i] = $tmp[$i]->id;
 			}
 			return $idSet;
@@ -84,7 +84,7 @@ class BillRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public static function setBillNumber(){
+	public static function setBillNumber($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->billNumber=$data;
@@ -92,7 +92,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setType(){
+	public static function setType($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->type=$data;
@@ -100,7 +100,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setDetail(){
+	public static function setDetail($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->detail=$data;
@@ -108,7 +108,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setValue(){
+	public static function setValue($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->value=$data;
@@ -116,7 +116,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setState(){
+	public static function setState($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->state=$data;
