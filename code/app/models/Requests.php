@@ -13,6 +13,7 @@ class Requests
 	/*
 	type : 1 = clean
 		 : 2 = meal
+		 : 3 = check room
 
 	State Description :
 		Meal :
@@ -22,18 +23,21 @@ class Requests
 			2	1		1			1			0		0			0
 			2	1		1			1			1		0			0
 			3 	1		1			1			1		1			0
-			4	1		0			0			0		0			1
-			5	1		1			0			0		0			1
-			6	1		1			1			0		0			1
-			7	1		1			1			1		0			1
+			4	x		x			x			x		x			1
 
 		Clean :
 				add | accept | complete | cancel
 			0	1		0			0		0
 			1	1		1			0		0
 			2	1		1			1		0
-			3 	1		0			0		1
-			4	1		1			0		1
+			3 	x		x			x		1
+
+
+		Check room :
+				add | accept | complete
+			0	1		0		0
+			1	1		1		0
+			2	1		1		1
 
 
 	*** use customerServiceID for refer to user

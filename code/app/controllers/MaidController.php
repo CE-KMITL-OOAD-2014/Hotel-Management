@@ -38,4 +38,43 @@
 			} 
 		}
 //----------------------------------------------------------
+
+		public function viewcheckRoom(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="maid"){
+					$data = Input::all();
+					$user->completeCheckReq($data['reqID']);
+					return View::make('maid-checkRoom')->with('reqID',$data['reqID']);
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+
+//----------------------------------------------------------
+
+		public function checkRoomComplete(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="maid"){
+					$data = Input::all();
+					$user->checkRoomComplete($data);
+					return Redirect::to('/');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			} 
+		}
+//----------------------------------------------------------
 	}

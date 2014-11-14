@@ -7,14 +7,11 @@
 	<br>
 	<br>
 	<a href="/checkin"><button>checkin</button></a>
+	<a href="/checkout"><button>checkout</button></a>
+	<a href="/pay"><button>Complete Payment</button></a>
 	<br>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>
-
-	<?php 
-		$user = unserialize(Session::get('user'));
-		var_dump($user);
-	 ?>
 </body>
 </html>

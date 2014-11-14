@@ -32,9 +32,16 @@ Route::post('/addRoom', 'ManagerController@addRoom');
 
 //Receptionist
 Route::get('/checkin', 'ReceptionistController@viewCheckin');
+Route::get('/checkout', 'ReceptionistController@viewCheckout');
+Route::post('/checkout', 'ReceptionistController@checkout');
 Route::post('/checkin', 'ReceptionistController@checkin');
 Route::get('/addGuest', 'ReceptionistController@viewAddGuest');
 Route::post('/addGuest', 'ReceptionistController@addGuest');
+Route::get('/pay', 'ReceptionistController@viewPay');
+Route::post('/confirmPay', 'ReceptionistController@confirmPay');
+Route::post('/pay', 'ReceptionistController@pay');
+//Route::post('/waitForCheck', 'ReceptionistController@waitForCheck');
+
 
 //Customer Service
 Route::get('/addCleanReq', 'CustomerServiceController@addCleanReq');
@@ -46,6 +53,8 @@ Route::get('/completeOrder', 'CustomerServiceController@completeOrder');
 //Maid
 Route::get('/checkClean', 'MaidController@viewCheckClean');
 Route::post('/acceptClean', 'MaidController@acceptClean');
+Route::post('/checkRoom', 'MaidController@viewCheckRoom');
+Route::post('/checkRoomComplete', 'MaidController@checkRoomComplete');
 
 //Kitchen
 Route::get('/addMeal', 'KitchenController@viewAddMeal');

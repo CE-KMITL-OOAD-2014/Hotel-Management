@@ -19,6 +19,24 @@
 
 //----------------------------------------------------------
 
+		public function viewCheckout(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="receptionist"){
+					return View::make('receptionist-checkout');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+
+//----------------------------------------------------------
+
 		public function checkin(){
 			if(Session::get('user', 'null')!='null'){
 				$user = unserialize(Session::get('user'));
@@ -31,6 +49,26 @@
 
 					$user->checkin($data['roomNumber'],$tool->getBillNumber());
 					return Redirect::to('/addGuest');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			} 
+		}
+
+//----------------------------------------------------------
+
+		public function checkout(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="receptionist"){
+					$data = Input::all();
+					$user->reqCheckRoom($data['roomNumber']);
+					return Redirect::to('/');
 				}
 				else{
 					Session::forget('user');
@@ -85,5 +123,56 @@
 			}
 		}
 
+//----------------------------------------------------------		
+		public function viewPay(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="receptionist"){
+					return View::make('receptionist-pay');
+				}
+				else{
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------	
+
+		public function confirmPay(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="receptionist"){
+					$data = Input::all();
+					return View::make('receptionist-confirmPay')->with('reqId',$data['reqId']);
+				}
+				else{
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
 //----------------------------------------------------------
+		public function pay(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="receptionist"){
+					$data = Input::all();
+					$user->pay($data['reqId']);
+					return Redirect::to('/');
+				}
+				else{
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
+
+
 	}

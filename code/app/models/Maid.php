@@ -48,5 +48,43 @@ class Maid extends Staff
 	}
 //-----------------------------------------
 
+	public function checkRoomComplete($data){
+		$reqTmp = new Requests();
+		$reqTmp->getRequest($data['reqID']);
+		$reqTmp->setState(1);
+		$reqTmp->saveToDB();
+
+		$billid = BillRepository::newBill();
+		$bill = new Bill();
+		$bill->setId($billid);
+		$bill->setBillNumber($data['billNumber']);
+		$bill->setType(2);
+		$bill->setDetail("Consumer Goods : ".$data['consume-detail']);
+		$bill->setState(0);
+		$bill->setValue($data['consume']);
+		$bill->saveToDB();
+
+
+		$billid = BillRepository::newBill();
+		$bill = new Bill();
+		$bill->setId($billid);
+		$bill->setBillNumber($data['billNumber']);
+		$bill->setType(3);
+		$bill->setDetail("Room damages : ".$data['damage-detail']);
+		$bill->setState(0);
+		$bill->setValue($data['damage']);
+		$bill->saveToDB();
+		//$this->setRequestID($cleanID);
+		//$this->saveToDB();
+	}
+//-----------------------------------------
+
+	public function completeCheckReq($reqId){
+		$reqTmp = new Requests();
+		$reqTmp->getRequest($reqId);
+		$reqTmp->setState(2);
+		$reqTmp->saveToDB();
+	}
+
 }
  ?>

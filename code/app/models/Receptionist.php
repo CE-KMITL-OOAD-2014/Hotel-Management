@@ -1,7 +1,4 @@
 <?php 
-/**
-* 
-*/
 class Receptionist extends Staff
 {
 	function __construct()
@@ -31,16 +28,38 @@ class Receptionist extends Staff
 
 	public function checkin($room,$billNumber){
 		$id=CustomerServiceRepository::getIDbyRoom($room);
-		$obj = CustomerService::getCustomerService($id);
+		$obj = new CustomerService();
+		$obj->getCustomerService($id);
 		$obj->setBillNumber($billNumber);
 		$obj->setState(true);
 		$obj->saveToDB();
 
 		$roomID = RoomRepository::getID($room);
 		$roomObj = new Room();
-		$rommObj->getRoom($roomID);
+		$roomObj->getRoom($roomID);
 		$roomObj->setAvailable(false);
 		$roomObj->saveToDB();
+	}
+
+	public function reqCheckRoom($room){
+		$id=CustomerServiceRepository::getIDbyRoom($room);
+		$obj = new CustomerService();
+		$obj->getCustomerService($id);
+		$obj->setState(false);
+		$obj->saveToDB();
+
+		$roomId = RoomRepository::getID($room);
+		$roomObj = new Room();
+		$roomObj->getRoom($roomId);
+		$roomObj->setAvailable(1);
+		$roomObj->saveToDB();
+
+		$id = RequestRepository::newRequest();
+		RequestRepository::setType($id, 3);
+		RequestRepository::setRoom($id, $room);
+		RequestRepository::setBillNumber($id, $obj->getBillNumber());
+		RequestRepository::setCustomerServiceID($id, 0);
+		RequestRepository::setState($id, 0);
 	}
 
 	public function addGuest($data){
@@ -52,7 +71,14 @@ class Receptionist extends Staff
 		CustomerRepository::setDetail($id,$data['detail']);
 		CustomerRepository::setBillNumber($id,$data['billNumber']);
 		CustomerRepository::setState($id,true);
-	} 
+	}
+
+	public function pay($reqId){
+		$reqTmp = new Requests();
+		$reqTmp->getRequest($reqId);
+		$reqTmp->setState(2);
+		$reqTmp->saveToDB();
+	}
 
 //-----------------------------------------
 }

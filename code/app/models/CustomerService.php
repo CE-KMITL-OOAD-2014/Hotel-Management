@@ -18,21 +18,16 @@ class CustomerService extends User{
 //-----------------------------------------
 // Get customer service Object (use id of the User(parent class) not id of this field)
 
-	public static function getCustomerService($id){
+	public function getCustomerService($id){
 		if(UserRepository::isExist($id)){
-			$customerObj = new CustomerService();
-			$customerObj->setId($id);
-			$customerObj->setUsername(UserRepository::getUsername($id));
-			$customerObj->setPassword(UserRepository::getPassword($id));
-			$customerObj->setRole(UserRepository::getRole($id));
+			$this->getUser($id);
 
-			$cusServId = CustomerServiceRepository::getID($customerObj->getUsername());
-			$customerObj->setState(CustomerServiceRepository::getState($cusServId));
-			$customerObj->setRoom(CustomerServiceRepository::getRoom($cusServId));
-			$customerObj->setMealReqID(CustomerServiceRepository::getMealReqID($cusServId));
-			$customerObj->setCleanReqID(CustomerServiceRepository::getCleanReqID($cusServId));
-			$customerObj->setBillNumber(CustomerServiceRepository::getBillNumber($cusServId));
-			return $customerObj;
+			$cusServId = CustomerServiceRepository::getID($this->getUsername());
+			$this->setState(CustomerServiceRepository::getState($cusServId));
+			$this->setRoom(CustomerServiceRepository::getRoom($cusServId));
+			$this->setMealReqID(CustomerServiceRepository::getMealReqID($cusServId));
+			$this->setCleanReqID(CustomerServiceRepository::getCleanReqID($cusServId));
+			$this->setBillNumber(CustomerServiceRepository::getBillNumber($cusServId));
 		}
 		else{
 		}

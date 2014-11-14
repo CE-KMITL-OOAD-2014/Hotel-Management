@@ -71,7 +71,8 @@
 						$userTmp->getMaid($userDbTmp[0]->id);
 					}
 					else if($userDbTmp[0]->role=='customer'){
-						$userTmp = CustomerService::getCustomerService($userDbTmp[0]->id);
+						$userTmp = new CustomerService();
+						$userTmp->getCustomerService($userDbTmp[0]->id);
 						if($userTmp->getState()){
 
 						}
