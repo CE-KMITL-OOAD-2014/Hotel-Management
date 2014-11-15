@@ -30,6 +30,25 @@ class Manager extends Staff  {
 		RoomRepository::setMaintainancing($id,$data['maintainancing']);
 		RoomRepository::setClean($id,$data['clean']);
 	}
+//-----------------------------------------
+// Add new User 
+	public function editRoom($data){
+		$room =new Room();
+		$room->getRoom($data['RoomID']);
+		$room->setBed($data['bed']);
+		$room->setPrice($data['price']);
+		$room->setRoomType($data['roomType']);
+		$room->saveToDB();
+	}
+
+//-----------------------------------------
+// Add new User 
+	public function deleteRoom($id){
+		$room =new Room();
+		$room->getRoom($id);
+		$room->delFromDB();
+	}
+//-----------------------------------------
 }
 
  ?>

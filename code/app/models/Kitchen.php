@@ -49,6 +49,25 @@ class Kitchen extends Staff
 		//$this->setMealId($orderID);
 		//$this->saveToDB();
 	}
+
+//-----------------------------------------
+// Add new User 
+	public function editMeal($data){
+		$meal =new Meal();
+		$meal->getMeal($data['mealID']);
+		$meal->setName($data['name']);
+		$meal->setPrice($data['price']);
+		$meal->setDesc($data['desc']);
+		$meal->saveToDB();
+	}
+
+//-----------------------------------------
+// Add new User 
+	public function deleteMeal($id){
+		$user =new Meal();
+		$user->getMeal($id);
+		$user->delFromDB();
+	}
 //-----------------------------------------
 
 }

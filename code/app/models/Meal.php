@@ -74,6 +74,15 @@ class Meal {
 	}
 
 //-----------------------------------------
+// set Meal
+		public function delFromDB(){
+			if(MealRepository::isExist($this->getId())){
+				MealRepository::del($this->getId());
+			}
+			else {
+			}
+		}
+//-----------------------------------------
 
 
 }

@@ -20,6 +20,12 @@ class MealRepository{
 	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+		public static function del($id){ 
+		$tmp = MealDB::find($id);
+		$tmp->delete();
+	}
+	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 	public static function getName($id){
 		$tmp = MealDB::find($id);
 		if($tmp!=NULL){

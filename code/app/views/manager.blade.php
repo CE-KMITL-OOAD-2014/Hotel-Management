@@ -8,6 +8,8 @@
 	<br>
 	<a href="/addRoom"><button>Add Room</button></a>
 	<br>
+	<a href="/editRoom"><button>Edit Room</button></a>
+	<br>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>

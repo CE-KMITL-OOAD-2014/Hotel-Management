@@ -27,6 +27,12 @@ class userRepository
 	}
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+	public static function del($id){ 
+		$tmp = UserDB::find($id);
+		$tmp->delete();
+	}
+	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get ID of Object by username
 
 	public static function getID($username){

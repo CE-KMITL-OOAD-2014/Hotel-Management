@@ -24,11 +24,16 @@ Route::get('/addStaff', 'AdminController@viewAddStaff');
 Route::post('/addStaff', 'AdminController@addStaff');
 Route::get('/addCustomer', 'AdminController@viewAddCustomer');
 Route::post('/addCustomer', 'AdminController@addCustomer');
+Route::get('/editStaff', 'AdminController@viewEditStaff');
+Route::post('/editStaff', 'AdminController@viewStaffEdit');
+Route::post('/editStaffComplete', 'AdminController@editStaffComplete');
 
 //Manager
 Route::get('/addRoom', 'ManagerController@viewAddRoom');
 Route::post('/addRoom', 'ManagerController@addRoom');
-
+Route::get('/editRoom','ManagerController@viewEditRoom');
+Route::post('/editRoom','ManagerController@viewRoomEdit');
+Route::post('/editRoomComplete', 'ManagerController@editRoomComplete');
 
 //Receptionist
 Route::get('/checkin', 'ReceptionistController@viewCheckin');
@@ -61,6 +66,9 @@ Route::get('/addMeal', 'KitchenController@viewAddMeal');
 Route::post('/addMeal', 'KitchenController@addMeal');
 Route::get('/checkOrder','KitchenController@viewCheckOrder');
 Route::post('/acceptOrder', 'KitchenController@acceptOrder');
+Route::get('/editMeal','KitchenController@viewEditMeal');
+Route::post('/editMeal','KitchenController@viewMealEdit');
+Route::post('/editMealComplete', 'KitchenController@editMealComplete');
 
 //temp
 Route::post('/createAdmin', 'HomeController@createAdmin');

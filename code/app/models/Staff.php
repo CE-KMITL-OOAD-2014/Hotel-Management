@@ -70,7 +70,7 @@ class Staff extends User
 			$this->setLocation(StaffRepository::getLocation($staffId));
 			$this->setEmail(StaffRepository::getEmail($staffId));
 			$this->setTel(StaffRepository::getTel($staffId));
-			$this->setIDnumber(StaffRepository::getIDnumber($id));
+			$this->setIDnumber(StaffRepository::getIDnumber($staffId));
 		}
 		else {
 
@@ -94,6 +94,17 @@ class Staff extends User
 			}
 		}
 
+//-----------------------------------------
+// set Staff
+		public function delFromDB(){
+			$id = StaffRepository::getID($this->getUsername());
+			if(StaffRepository::isExist($id)){
+				parent::delFromDB();
+				StaffRepository::del($id);
+			}
+			else {
+			}
+		}
 //-----------------------------------------
 // coppy constructor
 /*		public function coppyStaff($tmp){

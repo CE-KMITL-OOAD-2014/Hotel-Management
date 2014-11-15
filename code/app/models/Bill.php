@@ -67,16 +67,20 @@ class Bill{
 		$this->state = $data;
 	}
 
+
+	public function getTime(){
+		return BillRepository::getTime($this->getId());
+	}
 	//-----------------------------------------------------
 
 	public function getBill($id){
 		if(BillRepository::isExist($id)){
 			$this->setId($id);
-			$this->setBillNumber(BillRepository::getBillNumber());
-			$this->setType(BillRepository::getType());
-			$this->setDetail(BillRepository::getDetail());
-			$this->setValue(BillRepository::getValue());
-			$this->setState(BillRepository::getState());			
+			$this->setBillNumber(BillRepository::getBillNumber($id));
+			$this->setType(BillRepository::getType($id));
+			$this->setDetail(BillRepository::getDetail($id));
+			$this->setValue(BillRepository::getValue($id));
+			$this->setState(BillRepository::getState($id));			
 		}
 	}
 

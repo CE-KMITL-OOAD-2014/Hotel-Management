@@ -10,6 +10,8 @@
 	<br>
 	<a href="/addMeal"><button>Add Meal</button></a>
 	<br>
+	<a href="/editMeal"><button>Edit Meal</button></a>
+	<br>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>

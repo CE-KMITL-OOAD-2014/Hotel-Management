@@ -77,4 +77,65 @@
 		}
 
 //----------------------------------------------------------
+
+		public function viewEditMeal(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="kitchen"){
+					return View::make('kitchen-editMeal');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
+
+		public function viewMealEdit(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="kitchen"){
+					$tmp = Input::all();
+					if($tmp['action']=='edit'){
+						return View::make('kitchen-mealEdit')->with('mealid',$tmp['mealid']);
+					}
+					else{
+						$user->deleteMeal($tmp['mealid']);
+						return Redirect::to('/');
+					}
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
+
+
+		public function editMealComplete(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="kitchen"){
+					$tmp = Input::all();
+					$user->editMeal($tmp);
+					return Redirect::to('/');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
 	}

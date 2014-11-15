@@ -30,7 +30,12 @@ class RoomRepository{
 		$tmp->save();
 		return $tmp->id;
 	}
-	
+	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		public static function del($id){ 
+		$tmp = RoomDB::find($id);
+		$tmp->delete();
+	}	
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	 public static function getRoomNumber($id){

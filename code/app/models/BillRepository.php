@@ -35,6 +35,15 @@ class BillRepository{
 	}
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	public static function getTime($id){
+		$tmp = BillDB::find($id);
+		if($tmp!=NULL){
+			return $tmp->update_at;
+		}
+		else {
+			return NULL;
+		}
+	}
 
 	public static function getBillNumber($id){
 		$tmp = BillDB::find($id);

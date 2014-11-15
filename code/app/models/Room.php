@@ -106,5 +106,14 @@ class Room
 	 }
 
 //-----------------------------------------
+// set Meal
+		public function delFromDB(){
+			if(RoomRepository::isExist($this->getId())){
+				RoomRepository::del($this->getId());
+			}
+			else {
+			}
+		}
+//-----------------------------------------
 }
  ?>

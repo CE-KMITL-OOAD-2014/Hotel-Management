@@ -87,9 +87,7 @@
 		}
 //----------------------------------------------------------
 		public function logout(){
-			if(Session::get('user', 'null')!='null'){
-				Session::forget('user');
-			}
+			Session::forget('user');
 			return Redirect::to('/');
 		}
 //----------------------------------------------------------

@@ -4,15 +4,9 @@ class StaffRepository{
 	// check if exsit this user by search from DB
 
 	public static function isExist($id){
-		$tmp = UserDB::find($id);
+		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
-			$tmp2 = StaffDB::find(StaffRepository::getID($tmp->username));
-			if($tmp2!=NULL){
-				return true;
-			}
-			else {
-				return false;
-			}
+			return true;
 		}
 		else {
 			return false;
@@ -28,6 +22,13 @@ class StaffRepository{
 		return $tmp->id;
 	}
 
+	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+	// New User
+
+	public static function del($id){ 
+		$tmp = StaffDB::find($id);
+		$tmp->delete();
+	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get ID of Object by username
 

@@ -56,6 +56,30 @@ class Admin extends User
 		CustomerServiceRepository::setRoom($customerId,$data['room']);
 		CustomerServiceRepository::setState($customerId,false);
 	}
+
+//-----------------------------------------
+// Add new User 
+	public function editStaff($data){
+		$user =new Staff();
+		$user->getStaff($data['userID']);
+		$user->setUsername($data['username']);
+		$user->setPassword($data['password']);
+		$user->setStaffID($data['staffID']);
+		$user->setName($data['name']);
+		$user->setIDnumber($data['IDnumber']);
+		$user->setLocation($data['location']);
+		$user->setEmail($data['email']);
+		$user->setTel($data['tel']);
+		$user->saveToDB();
+	}
+
+//-----------------------------------------
+// Add new User 
+	public function deleteStaff($id){
+		$user =new Staff();
+		$user->getStaff($id);
+		$user->delFromDB();
+	}
 //-----------------------------------------
 }
  ?>

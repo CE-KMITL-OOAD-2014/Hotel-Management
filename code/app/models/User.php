@@ -69,7 +69,15 @@
 			else {
 			}
 		}
-
+//-----------------------------------------
+// set Staff
+		public function delFromDB(){
+			if(UserRepository::isExist($this->getId())){
+				UserRepository::del($this->getId());
+			}
+			else {
+			}
+		}
 //-----------------------------------------
 // coppy constructor
 /*		public function coppyUser($tmp){
