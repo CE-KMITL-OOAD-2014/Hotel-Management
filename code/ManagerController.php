@@ -97,58 +97,5 @@
 				return Redirect::to('/login');
 			}
 		}
-
-//----------------------------------------------------------
-		public function viewCheckReq(){
-			if(Session::get('user', 'null')!='null'){
-				$user = unserialize(Session::get('user'));
-				if($user->getRole()=="manager"){
-					return View::make('manager-checkReq');
-				}
-				else{
-					Session::forget('user');
-					return Redirect::to('/');
-				}
-			}
-			else {
-				return Redirect::to('/login');
-			}
-		}
-
-//----------------------------------------------------------
-		public function cancelReq(){
-			if(Session::get('user', 'null')!='null'){
-				$user = unserialize(Session::get('user'));
-				if($user->getRole()=="manager"){
-					$data = Input::all();
-					$user->cancelReq($data['reqID']);
-					return Redirect::to('/');
-				}
-				else{
-					Session::forget('user');
-					return Redirect::to('/');
-				}
-			}
-			else {
-				return Redirect::to('/login');
-			}
-		}
-//----------------------------------------------------------
-		public function checkBill(){
-			if(Session::get('user', 'null')!='null'){
-				$user = unserialize(Session::get('user'));
-				if($user->getRole()=="manager"){
-					return View::make('manager-checkBill');
-				}
-				else{
-					Session::forget('user');
-					return Redirect::to('/');
-				}
-			}
-			else {
-				return Redirect::to('/login');
-			}
-		}
-
 //----------------------------------------------------------
 	}

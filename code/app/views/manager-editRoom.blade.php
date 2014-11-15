@@ -17,7 +17,7 @@
 		 ?>
 		<br>
 		<br>
-		<input type="radio" name="action" value="edit">EDIT <input type="radio" name="action" value="del"> DELETE
+		<input type="radio" name="action" value="edit" checked>EDIT <input type="radio" name="action" value="del"> DELETE
 		<button type="submit">submit</button>
 	</form>
 </body>

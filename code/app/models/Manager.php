@@ -27,17 +27,16 @@ class Manager extends Staff  {
 		RoomRepository::setBed($id,$data['bed']);
 		RoomRepository::setRoomType($id,$data['roomType']);
 		RoomRepository::setAvailable($id,$data['available']);
-		RoomRepository::setMaintainancing($id,$data['maintainancing']);
-		RoomRepository::setClean($id,$data['clean']);
 	}
 //-----------------------------------------
 // Add new User 
 	public function editRoom($data){
 		$room =new Room();
-		$room->getRoom($data['RoomID']);
+		$room->getRoom($data['roomID']);
 		$room->setBed($data['bed']);
 		$room->setPrice($data['price']);
 		$room->setRoomType($data['roomType']);
+		$room->setAvailable($data['available']);
 		$room->saveToDB();
 	}
 
@@ -47,6 +46,14 @@ class Manager extends Staff  {
 		$room =new Room();
 		$room->getRoom($id);
 		$room->delFromDB();
+	}
+//-----------------------------------------
+// Add new User 
+	public function cancelReq($reqID){
+		$reqTmp = new Requests();
+		$reqTmp->getRequest($reqID);
+		$reqTmp->setState(9);
+		$reqTmp->saveToDB();
 	}
 //-----------------------------------------
 }

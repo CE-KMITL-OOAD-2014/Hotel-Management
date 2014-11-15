@@ -74,7 +74,6 @@
 						$userTmp = new CustomerService();
 						$userTmp->getCustomerService($userDbTmp[0]->id);
 						if($userTmp->getState()){
-
 						}
 						else{
 							return Redirect::to('/');

@@ -16,3 +16,26 @@
 	</form>
 </body>
 </html>
+
+<?php
+	$date = date("ymd");
+	$activeRoomSet = CustomerServiceDB::where('state','=',1)->get();
+
+	//echo count($activeRoomSet);
+	for($i=0;$i<count($activeRoomSet);$i++){
+		//echo $i."<br>";
+		$req = RequestDB::where('room','=',$activeRoomSet[$i]->room)->where('date','=',$date)->get();
+		if(count($req)==0) {
+			$id = RequestRepository::newRequest();
+			$req = new Requests();
+			$req->getRequest($id);
+			$req->setType(1);
+			$req->setRoom($activeRoomSet[$i]->room);
+			$req->setBillNumber(0);
+			$req->setCustomerServiceID(0);
+			$req->setState(0);
+			$req->setDate($date);
+			$req->saveToDB();
+		}
+	}
+ ?>

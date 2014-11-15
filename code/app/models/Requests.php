@@ -8,7 +8,7 @@ class Requests
 	private $customerServiceID;
 	private $state;
 	private $mealID;
-	private $number;
+	private $date;
 
 	/*
 	type : 1 = clean
@@ -23,14 +23,14 @@ class Requests
 			2	1		1			1			0		0			0
 			2	1		1			1			1		0			0
 			3 	1		1			1			1		1			0
-			4	x		x			x			x		x			1
+			9	x		x			x			x		x			1
 
 		Clean :
 				add | accept | complete | cancel
 			0	1		0			0		0
 			1	1		1			0		0
 			2	1		1			1		0
-			3 	x		x			x		1
+			9 	x		x			x		1
 
 
 		Check room :
@@ -53,7 +53,7 @@ class Requests
 	 	$this->customerServiceID=NULL;
 	 	$this->state=NULL;
 	 	$this->mealID=NULL;
-	 	$this->number=NULL;
+	 	$this->date=NULL;
 	}
 //-----------------------------------------
 // Get
@@ -66,7 +66,7 @@ class Requests
 	 		$this->setCustomerServiceID(RequestRepository::getCustomerServiceID($id));
 	 		$this->setState(RequestRepository::getState($id));
 	 		$this->setMealID(RequestRepository::getMealID($id));
-	 		$this->setNumber(RequestRepository::getNumber($id));
+	 		$this->setDate(RequestRepository::getDate($id));
 		}
 		else{
 		}
@@ -82,7 +82,7 @@ class Requests
 		RequestRepository::setCustomerServiceID($this->getID(), $this->getCustomerServiceID());
 		RequestRepository::setState($this->getID(), $this->getState());
 		RequestRepository::setMealID($this->getID(), $this->getMealID());
-		RequestRepository::setNumber($this->getID(), $this->getNumber());
+		RequestRepository::setDate($this->getID(), $this->getDate());
 	}
 //-----------------------------------------
 // get
@@ -107,8 +107,8 @@ class Requests
 	public function getMealID(){
 		return $this->mealID;
 	}
-	public function getNumber(){
-		return $this->number;
+	public function getDate(){
+		return $this->date;
 	}
 
 	public function setId($data){
@@ -132,8 +132,8 @@ class Requests
 	public function setMealID($data){
 		$this->mealID=$data;
 	}
-	public function setNumber($data){
-		$this->number=$data;
+	public function setDate($data){
+		$this->date=$data;
 	}
 
 }

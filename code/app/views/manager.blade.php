@@ -10,6 +10,10 @@
 	<br>
 	<a href="/editRoom"><button>Edit Room</button></a>
 	<br>
+	<a href="/checkReq"><button>Check Req</button></a>
+	<br>
+	<a href="/checkBill"><button>Check Bill</button></a>
+	<br>
 	<form action="{{ url('/logout') }}" method="post">
 		<button type="submit">logout</button>
 	</form>

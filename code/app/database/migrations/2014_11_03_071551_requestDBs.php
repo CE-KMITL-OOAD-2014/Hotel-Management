@@ -24,8 +24,7 @@ class RequestDBs extends Migration {
 			$table->string('customerServiceID');
 			$table->string('state');
 			$table->string('mealID');
-			$table->string('number');
-			$table->string('comment');
+			$table->string('date');
             $table->timestamps();
         });
 	}

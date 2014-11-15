@@ -34,6 +34,9 @@ Route::post('/addRoom', 'ManagerController@addRoom');
 Route::get('/editRoom','ManagerController@viewEditRoom');
 Route::post('/editRoom','ManagerController@viewRoomEdit');
 Route::post('/editRoomComplete', 'ManagerController@editRoomComplete');
+Route::get('/checkReq','ManagerController@viewCheckReq');
+Route::get('/checkBill','ManagerController@checkBill');
+Route::post('/cancelReq','ManagerController@cancelReq');
 
 //Receptionist
 Route::get('/checkin', 'ReceptionistController@viewCheckin');

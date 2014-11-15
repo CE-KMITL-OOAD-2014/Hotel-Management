@@ -33,8 +33,6 @@ class Room
 			$this->setBed(RoomRepository::getBed($id));
 			$this->setRoomType(RoomRepository::getRoomType($id));
 			$this->setAvailable(RoomRepository::getAvailable($id));
-			$this->setMaintainancing(RoomRepository::getMaintainancing($id));
-			$this->setClean(RoomRepository::getClean($id));
 		}
 		else{
 			
@@ -49,8 +47,6 @@ class Room
 		RoomRepository::setBed($this->getID(), $this->getBed());
 		RoomRepository::setRoomType($this->getID(), $this->getRoomType());
 		RoomRepository::setAvailable($this->getID(), $this->getAvailable());
-		RoomRepository::setMaintainancing($this->getID(), $this->getMaintainancing());
-		RoomRepository::setClean($this->getID(), $this->getClean());
 	}
 //-----------------------------------------
 //get set method
@@ -72,12 +68,6 @@ class Room
 	 public function getAvailable(){
 	 	return $this->available;
 	 }
-	 public function getMaintainancing(){
-	 	return $this->maintainancing;
-	 }
-	 public function getClean(){
-	 	return $this->clean;
-	 }
 
 
 	 public function setId($tmp){
@@ -97,12 +87,6 @@ class Room
 	 }
 	 public function setAvailable($tmp){
 	 	$this->available=$tmp;
-	 }
-	 public function setMaintainancing($tmp){
-	 	$this->maintainancing=$tmp;
-	 }
-	 public function setClean($tmp){
-	 	$this->clean=$tmp;
 	 }
 
 //-----------------------------------------

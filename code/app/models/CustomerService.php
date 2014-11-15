@@ -89,52 +89,35 @@ class CustomerService extends User{
 
 	public function addCleanRequest(){
 		$id = RequestRepository::newRequest();
-		RequestRepository::setType($id, 1);
-		RequestRepository::setRoom($id, $this->getRoom());
-		RequestRepository::setBillNumber($id, $this->getBillNumber());
-		RequestRepository::setCustomerServiceID($id, $this->getID());
-		RequestRepository::setState($id, 0);
+		$req = new Requests();
+		$req->getRequest($id);
+		$req->setType(1);
+		$req->setRoom($this->getRoom());
+		$req->setBillNumber($this->getBillNumber());
+		$req->setCustomerServiceID($this->getID());
+		$req->setState(0);
+		$req->saveToDB();
 
 		$this->setCleanReqID($id);
 		$this->saveToDB();
-
-		$billid = BillRepository::newBill();
-		$bill = new Bill();
-		$bill->setId($billid);
-		$bill->setBillNumber($this->getBillNumber());
-		$bill->setType(0);
-		$bill->setDetail("Cleaning Request Charge");
-		$bill->setState(0);
-		$bill->setValue(GlobalRepository::getCleanCharge());
-		$bill->saveToDB();
 	}
 
 //-----------------------------------------
 
 	public function addmealRequest($mealNumber){
 		$id = RequestRepository::newRequest();
-		RequestRepository::setType($id, 2);
-		RequestRepository::setRoom($id, $this->getRoom());
-		RequestRepository::setBillNumber($id, $this->getBillNumber());
-		RequestRepository::setCustomerServiceID($id, $this->getID());
-		RequestRepository::setState($id, 0);
-		RequestRepository::setMealID($id,$mealNumber);
+		$req = new Requests();
+		$req->getRequest($id);
+		$req->setType(2);
+		$req->setRoom($this->getRoom());
+		$req->setBillNumber($this->getBillNumber());
+		$req->setCustomerServiceID($this->getID());
+		$req->setState(0);
+		$req->setMealID($mealNumber);
+		$req->saveToDB();
 
 		$this->setMealReqID($id);
 		$this->saveToDB();
-
-		$meal = new Meal();
-		$meal->getMeal($mealNumber);
-
-		$billid = BillRepository::newBill();
-		$bill = new Bill();
-		$bill->setId($billid);
-		$bill->setBillNumber($this->getBillNumber());
-		$bill->setType(1);
-		$bill->setDetail("Food Request Charge : ".$meal->getName());
-		$bill->setState(0);
-		$bill->setValue($meal->getPrice());
-		$bill->saveToDB();
 	}
 
 //-----------------------------------------

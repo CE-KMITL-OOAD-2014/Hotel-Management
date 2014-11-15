@@ -13,7 +13,6 @@
 	<input type="radio" name="role" value="manager" checked >manager<br>
 	<input type="radio" name="role" value="receptionist" >receptionist<br>
 	<input type="radio" name="role" value="kitchen" >kitchen<br>
-	<input type="radio" name="role" value="waiter" >waiter<br>
 	<input type="radio" name="role" value="maid" >maid<br>
 	<!---->
 	<br>staffID : <input type="text" name="staffID">

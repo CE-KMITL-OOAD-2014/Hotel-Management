@@ -83,24 +83,6 @@ class RoomRepository{
 			return NULL;
 		}
 	 }
-	 public static function getMaintainancing($id){
-	 	$tmp = RoomDB::find($id);
-		if($tmp!=NULL){
-			return $tmp->maintainancing;
-		}
-		else {
-			return NULL;
-		}
-	 }
-	 public static function getClean($id){
-	 	$tmp = RoomDB::find($id);
-		if($tmp!=NULL){
-			return $tmp->clean;
-		}
-		else {
-			return NULL;
-		}
-	 }
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
@@ -140,22 +122,6 @@ class RoomRepository{
 	 	$tmp = RoomDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->available=$data;
-		 	$tmp->save();
-	 	}
-	 	else{}
-	 }
-	 public static function setMaintainancing($id,$data){
-	 	$tmp = RoomDB::find($id);
-	 	if($tmp!=NULL){
-		 	$tmp->maintainancing=$data;
-		 	$tmp->save();
-	 	}
-	 	else{}
-	 }
-	 public static function setClean($id,$data){
-	 	$tmp = RoomDB::find($id);
-	 	if($tmp!=NULL){
-		 	$tmp->clean=$data;
 		 	$tmp->save();
 	 	}
 	 	else{}

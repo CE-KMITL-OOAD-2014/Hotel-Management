@@ -43,8 +43,15 @@ class Maid extends Staff
 		$reqTmp->setState(1);
 		$reqTmp->saveToDB();
 
-		//$this->setRequestID($cleanID);
-		//$this->saveToDB();
+		$billid = BillRepository::newBill();
+		$bill = new Bill();
+		$bill->setId($billid);
+		$bill->setBillNumber($reqTmp->getBillNumber());
+		$bill->setType(0);
+		$bill->setDetail("Cleaning Request Charge");
+		$bill->setState(0);
+		$bill->setValue(GlobalRepository::getCleanCharge());
+		$bill->saveToDB();
 	}
 //-----------------------------------------
 

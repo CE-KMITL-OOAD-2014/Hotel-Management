@@ -46,8 +46,18 @@ class Kitchen extends Staff
 		$reqTmp->setState(1);
 		$reqTmp->saveToDB();
 
-		//$this->setMealId($orderID);
-		//$this->saveToDB();
+		$meal = new Meal();
+		$meal->getMeal($reqTmp->getMealID());
+
+		$billid = BillRepository::newBill();
+		$bill = new Bill();
+		$bill->setId($billid);
+		$bill->setBillNumber($reqTmp->getBillNumber());
+		$bill->setType(1);
+		$bill->setDetail("Food Request Charge : ".$meal->getName());
+		$bill->setState(0);
+		$bill->setValue($meal->getPrice());
+		$bill->saveToDB();
 	}
 
 //-----------------------------------------

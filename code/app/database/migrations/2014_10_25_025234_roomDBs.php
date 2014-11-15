@@ -23,8 +23,6 @@ class RoomDBs extends Migration {
 			$table->integer('bed');
 			$table->string('roomType',100);
 			$table->boolean('available');
-			$table->boolean('maintainancing');
-			$table->boolean('clean');
             $table->timestamps();
  
             $table->unique('roomnumber');

@@ -71,10 +71,10 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setNumber($id,$data){
+	public static function setDate($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
-		 	$tmp->number=$data;
+		 	$tmp->date=$data;
 		 	$tmp->save();
 	 	}
 	 	else{}
@@ -136,10 +136,10 @@ class RequestRepository{
 			return NULL;
 		}
 	}
-	public static function getNumber($id){
+	public static function getDate($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
-			return $tmp->number;
+			return $tmp->date;
 		}
 		else {
 			return NULL;
