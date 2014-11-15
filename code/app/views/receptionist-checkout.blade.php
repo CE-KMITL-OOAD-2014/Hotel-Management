@@ -24,10 +24,10 @@ Add User
 						<div class="col-md-11">
 							<form action="{{ url('/checkout') }}" method="post">
 								<?php 
-								$room = RoomDB::where('available','=',false)->get();
-								for($i = 0 ; $i < count($room) ; $i++){
-									echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
-								}
+									$room = RoomDB::where('available','=',false)->get();
+									for($i = 0 ; $i < count($room) ; $i++){
+										echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
+									}
 								?>	
 								<br><br>
 								<button  type="submit" class="btn btn-primary btn-lg active">submit</button>

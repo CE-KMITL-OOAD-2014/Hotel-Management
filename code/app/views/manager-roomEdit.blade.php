@@ -24,33 +24,50 @@ Add User
 						<form action="{{ url('/editRoomComplete') }}" method="post">
 
 							<?php
-							$room = new Room();
-							$room->getRoom($roomid);
+								$room = new Room();
+								$room->getRoom($roomid);
 							?>
 							<h3>Room : {{$room->getRoomNumber()}}</h3>
 							<fieldset>
 									<div class="form-group">
 										<br><br>
-										<label for="text" class="col-md-2 control-label">price</label>
+										<label for="text" class="col-md-2 control-label">Price</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="price" value="{{$room->getPrice()}}">
 										</div>
 									</div>
 									<div class="form-group">
 										<br><br>
-										<label for="text" class="col-md-2 control-label">bed</label>
+										<label for="text" class="col-md-2 control-label">Bed</label>
 										<div class="col-md-9">
 											<input type="text" class="form-control" name="bed"  value="{{$room->getBed()}}">
 										</div>
 									</div>
+				
 									<div class="form-group">
 										<br><br>
-										<label for="text" class="col-md-2 control-label">type </label>
+										<label class="col-md-2 control-label">Type</label>
 										<div class="col-md-9">
-											<input type="text" class="form-control" name="roomType" value="{{$room->getRoomType()}}">
+											<select class="form-control" name="available" id="available">
+												<option value="1" check>available</option>
+												<option value="0">not available</option>
+											</select>
 										</div>
 									</div>
-							<br><br><input type="radio" name="roomID" value="{{$roomid}}" checked>
+
+									<div class="form-group">
+										<br><br>
+										<label class="col-md-2 control-label">Room Type</label>
+										<div class="col-md-9">
+											<select class="form-control" name="roomType" id="roomType">
+												<option value="big" check>big</option>
+												<option value="medium">medium</option>
+												<option value="small">small</option>
+												          
+											</select>
+										</div>
+									</div>
+							<br><br><input type="hidden" name="roomID" value="{{$roomid}}" checked>
 							<br><br>
 							<button type="submit" class="btn btn-primary btn-lg active">submit</button><br><br>
 							</fieldset>

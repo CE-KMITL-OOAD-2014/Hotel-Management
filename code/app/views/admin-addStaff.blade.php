@@ -43,7 +43,7 @@ Add User
 									<br><br>
 									<label for="text" class="col-md-2 control-label">retype password</label>
                    						<div class="col-md-9">
-											<input type="password" class="form-control" name="retypepassword" placeholder="retypepassword" required="" autofocus="">
+											<input type="password" class="form-control" name="retypepassword" placeholder="rety pepassword" required="" autofocus="">
 										</div>
 								</div>
 							<!-- ตรงนี้ลีเอาใส่ไว้เป็น dropdown นะ ดูใน bootstrap -->
@@ -56,7 +56,6 @@ Add User
 						            		<option value="manager" check>manager</option>
 						            		<option value="receptionist">receptionist</option>
 						            		<option value="kitchen">kitchen</option>
-						            		<option value="waiter">waiter</option>
 						            		<option value="maid">maid</option>           
 					          			</select>
                     				</div>

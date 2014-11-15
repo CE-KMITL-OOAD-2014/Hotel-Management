@@ -34,15 +34,15 @@ Add User
 							?>
 							<br><br>
 							<div class="form-group">
-                  				<br><br>
-                    			<label class="col-md-1 control-label"></label>
-                    				<div class="col-md-9">
-                      					<select class="form-control" name="action" id="action">
-                      						<option value="edit" check>EDIT </option>
-						            		<option value="del"> DELETE</option>
-						            	</select>
-						          	</div>
-						        </div>
+								<br><br>
+								<label class="col-md-1 control-label"></label>
+								<div class="col-md-9">
+									<select class="form-control" name="action" id="action">
+										<option value="edit" check>EDIT </option>
+										<option value="del"> DELETE</option>
+									</select>
+								</div>
+							</div>
 							<br><br><br><button type="submit" class="btn btn-primary btn-lg active">submit</button><br><br><br>
 						</form>
 					</div>

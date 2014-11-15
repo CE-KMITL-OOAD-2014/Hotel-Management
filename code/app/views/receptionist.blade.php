@@ -29,7 +29,7 @@ Add User
 							
 						<img class="img-circle" src ="check.jpg" >
 						<br><br><br>
-						<a href="/checkin"><button  type="button" class="btn btn-primary btn-lg active">checkin</button></a>
+						<a href="/checkin"><button  type="button" class="btn btn-primary btn-lg active">Checkin</button></a>
 						<br><br><br>
 						</div>
 						<div class="col-md-4">
@@ -37,7 +37,7 @@ Add User
 							
 						<img class="img-circle" src ="checkout.jpg" >
 						<br><br><br>
-						<a href="/checkout"><button  type="button" class="btn btn-primary btn-lg active">checkout</button></a>
+						<a href="/checkout"><button  type="button" class="btn btn-primary btn-lg active">Checkout</button></a>
 						<br><br><br>
 						</div>
 						<div class="col-md-4">

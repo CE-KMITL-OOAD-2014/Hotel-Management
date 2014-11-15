@@ -69,30 +69,7 @@ Add User
 											</select>
 										</div>
 									</div>
-									<div class="form-group">
-										<br><br>
-										<label class="col-md-2 control-label">maintainancing</label>
-										<div class="col-md-9">
-											<select class="form-control" name="maintainancing" id="roomType">
-												<option value="1" check>ซ่อมบำรุง </option>
-												<option value="0">พร้อมใช้งาน</option>
-												          
-											</select>
-										</div>
-									</div>
-									<div class="form-group">
-										<br><br>
-										<label class="col-md-2 control-label">clean</label>
-										<div class="col-md-9">
-											<select class="form-control" name="clean" id="roomType">
-												<option value="1" check>ทำความสะอาดแล้ว</option>
-												<option value="0">ยังไม่ได้ทำความสะอาด</option>
-												          
-											</select>
-										</div>
-									</div>
 									
-
 									<br><br>
 									<button type="submit"  class="btn btn-primary btn-lg active">submit</button>
 									<br><br>

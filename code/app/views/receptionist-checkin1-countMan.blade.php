@@ -43,7 +43,10 @@ Add User
 									<?php 
 									$room = RoomDB::where('available','=',true)->get();
 									for($i = 0 ; $i < count($room) ; $i++){
-										echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
+										$cusid = CustomerServiceRepository::getIDbyRoom($room[$i]->roomNumber);
+										if($cusid!=NULL){
+											echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
+										}
 									}
 									?>	
 									

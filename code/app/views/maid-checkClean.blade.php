@@ -23,34 +23,37 @@ Add User
 					<div class="container">
 						<center>
 							<form action="{{ url('/acceptClean') }}" method="post">
-							<div align="center"><h3>Clean</h3></div>
-								<?php 
-								$req = RequestDB::where('type','=',1)->where('state','=',0)->get();
-								for($i = 0 ; $i < count($req) ; $i++){
-									echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
-								}
-								?>
-								<br>
-								<button type="submit"  class="btn btn-success btn-lg active">submit</button>
-								<br><br>
+								<div class="col-md-6">
+									<div align="center"><h3>Clean</h3></div>
+									<br>
+									<?php 
+									$req = RequestDB::where('type','=',1)->where('state','=',0)->get();
+									for($i = 0 ; $i < count($req) ; $i++){
+										echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
+									}
+									?>
+									<br><br>
+									<button type="submit"  class="btn btn-success btn-lg active">submit</button>
+									<br><br>
+								</div>
 							</form>
-							<div align="center"><hr></div>
-							<br>
-							<div align="center"><h3>Clean For Checkout</h3></div>
-							<br>
-
-							<form action="{{ url('/checkRoom') }}" method="post">
-
-								<?php 
-								$req = RequestDB::where('type','=',3)->where('state','=',0)->get();
-								for($i = 0 ; $i < count($req) ; $i++){
-									echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
-								}
-								?>
+							<div class="col-md-6">
+								<div align="center"><h3>Clean For Checkout</h3></div>
 								<br>
-								<button type="submit"  class="btn btn-success btn-lg active">submit</button>
-								<br><br>
-							</form>
+
+								<form action="{{ url('/checkRoom') }}" method="post">
+
+									<?php 
+									$req = RequestDB::where('type','=',3)->where('state','=',0)->get();
+									for($i = 0 ; $i < count($req) ; $i++){
+										echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
+									}
+									?>
+									<br><br>
+									<button type="submit"  class="btn btn-success btn-lg active">submit</button>
+									<br><br>
+								</form>
+							</div>
 						</center>
 					</div>
 				</div>

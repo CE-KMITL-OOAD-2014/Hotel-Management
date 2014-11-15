@@ -26,13 +26,13 @@ Add User
 								Select Room
 								<br><br>
 								<?php 
-								$req = RequestDB::where('type','=',3)->where('state','=',1)->get();
-								for($i = 0 ; $i < count($req) ; $i++){
-									echo "<br><input type='radio' name='reqId' value='".$req[$i]->id."'> ".$req[$i]->room;
-								}
+									$req = RequestDB::where('type','=',3)->where('state','=',1)->get();
+									for($i = 0 ; $i < count($req) ; $i++){
+										echo "<br><input type='radio' name='reqId' value='".$req[$i]->id."'> ".$req[$i]->room;
+									}
 								?>	
 								<br><br>
-								<button type="submit" class="btn btn-primary btn-lg active">submit</button>
+								<button type="submit" class="btn btn-primary btn-lg active">Submit</button>
 								<br><br>
 							</form>
 						</center>
