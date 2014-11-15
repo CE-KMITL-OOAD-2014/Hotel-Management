@@ -19,6 +19,18 @@ class Receptionist extends Staff
 	}
 
 //-----------------------------------------
+
+	public function generateRandomString($length = 10) {
+	    $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
+	    $randomString = '';
+	    for ($i = 0; $i < $length; $i++) {
+	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
+	    }
+	    //echo $randomString; exit();
+	    return $randomString;
+	}
+	// code from http://stackoverflow.com/questions/4356289/php-random-string-generator
+//-----------------------------------------
 // check in
 	// 1. activate customerService user
 	// 2. set room state to unavailable 
@@ -31,8 +43,10 @@ class Receptionist extends Staff
 		$obj = new CustomerService();
 		$obj->getCustomerService($id);
 		$obj->setBillNumber($billNumber);
+		$obj->setPassword($this->generateRandomString(6));
 		$obj->setState(true);
 		$obj->saveToDB();
+
 
 		$roomID = RoomRepository::getID($room);
 		$roomObj = new Room();

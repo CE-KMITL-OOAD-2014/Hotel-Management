@@ -141,4 +141,64 @@
 
 //----------------------------------------------------------
 
+		public function viewEditCustomer(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="admin"){
+					return View::make('admin-editCustomer');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
+
+		public function viewCustomerEdit(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="admin"){
+					$tmp = Input::all();
+					if($tmp['action']=='edit'){
+						return View::make('admin-customerEdit')->with('userid',$tmp['userid']);
+					}
+					else{
+						$user->deleteCustomer($tmp['userid']);
+						return Redirect::to('/');
+					}
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
+
+
+		public function editCustomerComplete(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="admin"){
+					$tmp = Input::all();
+					$user->editCustomer($tmp);
+					return Redirect::to('/');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
 }

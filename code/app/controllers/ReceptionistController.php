@@ -89,7 +89,7 @@
 				}
 				else{
 					Session::forget('checkinTool');
-					return Redirect::to('/');
+					return View::make('receptionist-giveCustomerAcct')->with('billId',$tool->getBillNumber());
 				}
 			}
 			else {

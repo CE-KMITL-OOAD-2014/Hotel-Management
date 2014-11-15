@@ -27,6 +27,9 @@ Route::post('/addCustomer', 'AdminController@addCustomer');
 Route::get('/editStaff', 'AdminController@viewEditStaff');
 Route::post('/editStaff', 'AdminController@viewStaffEdit');
 Route::post('/editStaffComplete', 'AdminController@editStaffComplete');
+Route::get('/editCustomer', 'AdminController@viewEditCustomer');
+Route::post('/editCustomer', 'AdminController@viewCustomerEdit');
+Route::post('/editCustomerComplete', 'AdminController@editCustomerComplete');
 
 //Manager
 Route::get('/addRoom', 'ManagerController@viewAddRoom');

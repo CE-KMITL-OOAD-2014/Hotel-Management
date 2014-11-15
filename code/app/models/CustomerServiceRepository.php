@@ -27,6 +27,12 @@ class CustomerServiceRepository {
 		$tmp->save();
 		return $tmp->id;
 	}
+	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		public static function del($id){ 
+		$tmp = CustomerServiceDB::find($id);
+		$tmp->delete();
+	}	
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get ID of Object by username
@@ -48,6 +54,17 @@ class CustomerServiceRepository {
 
 	public static function getIDbyRoom($room){
 		$tmp = CustomerServiceDB::where('room','=',$room)->get();
+		if(count($tmp)!=0){
+			return $tmp[0]->userID;
+		}
+		else {
+			return NULL;
+		}
+	}
+
+	public static function getIDbyBill($billId){
+		$tmp = CustomerServiceDB::where('billNumber','=',$billId)->get();
+		
 		if(count($tmp)!=0){
 			return $tmp[0]->userID;
 		}

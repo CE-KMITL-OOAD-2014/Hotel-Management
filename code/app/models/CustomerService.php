@@ -42,6 +42,7 @@ class CustomerService extends User{
 		CustomerServiceRepository::setCleanReqID($id, $this->getCleanReqID());
 		CustomerServiceRepository::setMealReqID($id, $this->getMealReqID());
 		CustomerServiceRepository::setBillNumber($id, $this->getBillNumber());
+		UserRepository::setPassword($this->getId(), $this->getPassword());
 	}
 
 //-----------------------------------------
@@ -145,6 +146,17 @@ class CustomerService extends User{
 		$this->saveToDB();
 	}
 
+//-----------------------------------------
+// set Meal
+		public function delFromDB(){
+			$id = CustomerServiceRepository::getID($this->getUsername());
+			if(CustomerServiceRepository::isExist($id)){
+				parent::delFromDB();
+				CustomerServiceRepository::del($id);
+			}
+			else {
+			}
+		}
 //-----------------------------------------
 }
 

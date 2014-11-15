@@ -76,17 +76,15 @@ class Customer {
 //-----------------------------------------
 // get customer
 
-	public static function getCustomer($id){
+	public function getCustomer($id){
 		if(CustomerRepository::isExist($id)){
-			$obj = new Customer();
-			$obj->setId($id);
-	 		$obj->setbillNumber(CustomerRepository::getBillNumber());
-	 		$obj->setName(CustomerRepository::getName());
-	 		$obj->setSurname(CustomerRepository::getSurname());
-	 		$obj->setNationalID(CustomerRepository::getNationalID());
-	 		$obj->setDetail(CustomerRepository::getDetail());
-	 		$obj->setState(CustomerRepository::getState());
-			return $obj;
+			$this->setId($id);
+	 		$this->setbillNumber(CustomerRepository::getBillNumber($id));
+	 		$this->setName(CustomerRepository::getName($id));
+	 		$this->setSurname(CustomerRepository::getSurname($id));
+	 		$this->setNationalID(CustomerRepository::getNationalID($id));
+	 		$this->setDetail(CustomerRepository::getDetail($id));
+	 		$this->setState(CustomerRepository::getState($id));
 		}
 		else {
 			return NULL;

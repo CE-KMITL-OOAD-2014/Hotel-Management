@@ -81,5 +81,23 @@ class Admin extends User
 		$user->delFromDB();
 	}
 //-----------------------------------------
+// Add new User 
+	public function editCustomer($data){
+		$user =new CustomerService();
+		$user->getCustomerService($data['userID']);
+		$user->setUsername($data['username']);
+		$user->setPassword($data['password']);
+		$user->setRoom($data['room']);
+		$user->saveToDB();
+	}
+
+//-----------------------------------------
+// Add new User 
+	public function deleteCustomer($id){
+		$user =new CustomerService();
+		$user->getCustomerService($id);
+		$user->delFromDB();
+	}
+//-----------------------------------------
 }
  ?>
