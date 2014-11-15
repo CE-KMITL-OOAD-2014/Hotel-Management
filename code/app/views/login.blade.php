@@ -1,41 +1,35 @@
-<html>
-<head>
-	<title>test</title>
-</head>
-<body>
-	<form action="{{ url('/login') }}" method="post">
-		username <input type="text" name="username"> <br>
-		password <input type="password" name="password"> <br>
-		<button type="submit">login</button>
-	</form>
+@extends('layout')
 
-	<br><br>
-	
-	<form action="{{ url('/createAdmin') }}" method="post">
-		<button type="submit">Create first admin</button>
-	</form>
-</body>
-</html>
+@section('title')
+LOGIN
+@stop
 
-<?php
-	$date = date("ymd");
-	$activeRoomSet = CustomerServiceDB::where('state','=',1)->get();
+<!--.................................................................................-->
 
-	//echo count($activeRoomSet);
-	for($i=0;$i<count($activeRoomSet);$i++){
-		//echo $i."<br>";
-		$req = RequestDB::where('room','=',$activeRoomSet[$i]->room)->where('date','=',$date)->get();
-		if(count($req)==0) {
-			$id = RequestRepository::newRequest();
-			$req = new Requests();
-			$req->getRequest($id);
-			$req->setType(1);
-			$req->setRoom($activeRoomSet[$i]->room);
-			$req->setBillNumber(0);
-			$req->setCustomerServiceID(0);
-			$req->setState(0);
-			$req->setDate($date);
-			$req->saveToDB();
-		}
-	}
- ?>
+@section('body')
+
+<!--login modal-->
+<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true" style="margin-top:80px;">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h1 class="text-center">Sign In</h1>
+      </div>
+      <div class="modal-body">
+      	<center>
+          <form action="{{ url('/login') }}" method="post">
+    			<input type="text"  class="form-control input-lg" placeholder="username" name="username"><br>
+    			<input type="password" class="form-control input-lg" placeholder="password" name="password"><br>
+    			<button type="submit" class="btn btn-primary btn-lg btn-block">Log In</button>
+  			</form>
+  			<br><br>
+  			</center>
+  			<form action="{{ url('/createAdmin') }}" method="post">
+    			<button type="submit" class="btn btn-warning">Create first admin</button>
+  			</form>
+      </div>
+  </div>
+  </div>
+</div>
+@stop

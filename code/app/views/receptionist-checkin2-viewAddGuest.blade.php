@@ -1,15 +1,78 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+@extends('layoutReceptionist')
+
+@section('title')
+Add User
+@stop
+@section('nav')
+<li>
+
+	<a onclick="myFunction()" type="submit" style="background-color:#FF8C00; color:white;">
+		<span class="glyphicon glyphicon-user">logout
+		</span>
+	</a>
+</li>
+@stop
+
+@section('body')
 <h1>Add Guest</h1>
-<form action="{{ url('/addGuest') }}" method="post">	
-	<br>name : <input type="text" name="name">
-	<br>surname : <input type="text" name="surname">
-	<br>nationalID : <input type="text" name="nationalID">
-	<br>detail : <input type="text" name="detail">
-	<button type="submit">submit</button>
+<div style="background-color:white">
+	<div class="container">
+		<div class="row">
+			<div align="center">
+				<div class="box" border="20" >
+					<div class="container">
+						<div class="col-md-11">
+							<form action="{{ url('/addGuest') }}" method="post">
+							<fieldset>
+                  				<div class="form-group">
+                  					<br><br>
+                  					<label for="text" class="col-md-2 control-label">name</label>
+                   						<div class="col-md-9">
+											<input type="text" class="form-control" name="name" placeholder="name" required="" autofocus="">
+										</div>
+								</div>	
+								<div class="form-group">
+                  					<br><br>
+                  					<label for="text" class="col-md-2 control-label">surname</label>
+                   						<div class="col-md-9">
+											<input type="text" class="form-control" name="surname" placeholder="surname" required="" autofocus="">
+										</div>
+								</div>
+								<div class="form-group">
+                  					<br><br>
+                  					<label for="text" class="col-md-2 control-label">national ID</label>
+                   						<div class="col-md-9">
+											<input type="text" class="form-control" name="nationalID" placeholder="nationalID" required="" autofocus="">
+										</div>
+								</div>	
+								<div class="form-group">
+                  					<br><br>
+                  					<label for="text" class="col-md-2 control-label">detail</label>
+                   						<div class="col-md-9">
+											<input type="text" class="form-control" name="detail" placeholder="detail" required="" autofocus="">
+										</div>
+								</div>	
+
+								<br><br>
+								<button type="submit"class="btn btn-primary btn-lg active">submit</button><br><br>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<form id="myForm"action="{{ url('/logout') }}" method="post">
 </form>
-</body>
-</html>
+<script type="text/javascript">
+	function myFunction() {
+		document.getElementById("myForm").submit();
+	}
+
+
+</script>
+
+@stop

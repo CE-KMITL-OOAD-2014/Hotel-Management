@@ -1,37 +1,73 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+@extends('layoutMaid')
+
+@section('title')
+Add User
+@stop
+@section('nav')
+<li>
+
+	<a onclick="myFunction()" type="submit" style="background-color:#FF8C00; color:white;">
+		<span class="glyphicon glyphicon-user">logout
+		</span>
+	</a>
+</li>
+@stop
+
+@section('body')
 <h1>Clean Queue</h1>
-<form action="{{ url('/acceptClean') }}" method="post">
-	
-	<?php 
-		$req = RequestDB::where('type','=',1)->where('state','=',0)->get();
-		for($i = 0 ; $i < count($req) ; $i++){
-			echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
-		}
-	 ?>
-	<br>
-	<button type="submit">submit</button>
-</form>
+<div style="background-color:white">
+	<div class="container">
+		<div class="row">
+			<div align="center">
+				<div class="box" border="20" >
+					<div class="container">
+						<center>
+							<form action="{{ url('/acceptClean') }}" method="post">
+							<div align="center"><h3>Clean</h3></div>
+								<?php 
+								$req = RequestDB::where('type','=',1)->where('state','=',0)->get();
+								for($i = 0 ; $i < count($req) ; $i++){
+									echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
+								}
+								?>
+								<br>
+								<button type="submit"  class="btn btn-success btn-lg active">submit</button>
+								<br><br>
+							</form>
+							<div align="center"><hr></div>
+							<br>
+							<div align="center"><h3>Clean For Checkout</h3></div>
+							<br>
 
-<br>
-<br>
-<hr>
-<br>
-<br>
+							<form action="{{ url('/checkRoom') }}" method="post">
 
-<form action="{{ url('/checkRoom') }}" method="post">
-	
-	<?php 
-		$req = RequestDB::where('type','=',3)->where('state','=',0)->get();
-		for($i = 0 ; $i < count($req) ; $i++){
-			echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
-		}
-	 ?>
-	<br>
-	<button type="submit">submit</button>
+								<?php 
+								$req = RequestDB::where('type','=',3)->where('state','=',0)->get();
+								for($i = 0 ; $i < count($req) ; $i++){
+									echo "<br><input type='radio' name='reqID' value='".$req[$i]->id."'> ".$req[$i]->room;
+								}
+								?>
+								<br>
+								<button type="submit"  class="btn btn-success btn-lg active">submit</button>
+								<br><br>
+							</form>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<form id="myForm"action="{{ url('/logout') }}" method="post">
 </form>
-</body>
-</html>
+<script type="text/javascript">
+	function myFunction() {
+		document.getElementById("myForm").submit();
+	}
+
+
+</script>
+
+@stop

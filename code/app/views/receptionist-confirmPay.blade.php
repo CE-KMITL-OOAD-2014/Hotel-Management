@@ -1,25 +1,49 @@
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+@extends('layoutPay')
+
+@section('title')
+Add User
+@stop
+@section('nav')
+<li>
+
+	<a onclick="myFunction()" type="submit" style="background-color:#FF8C00; color:white;">
+		<span class="glyphicon glyphicon-user">logout
+		</span>
+	</a>
+</li>
+@stop
+
+@section('body')
 <h1>Payment Detail</h1>
-	<?php 
-		$req = new Requests();
-		$req->getRequest($reqId);
-		$sum = 0;
-		$billid = BillRepository::getID($req->getBillNumber());
-		for($i=0;$i<count($billid);$i++){
-			$bill = new Bill();
-			$bill->getBill($billid[$i]);
-			echo "<br>".$bill->getDetail()." ".$bill->getValue()." ".$bill->getTime();
-			$sum+=$bill->getValue();
-		}
-	 ?>
+
+<?php 
+$req = new Requests();
+$req->getRequest($reqId);
+$sum = 0;
+$billid = BillRepository::getID($req->getBillNumber());
+for($i=0;$i<count($billid);$i++){
+	$bill = new Bill();
+	$bill->getBill($billid[$i]);
+	echo "<br>".$bill->getDetail()." ".$bill->getValue()." ".$bill->getTime();
+	$sum+=$bill->getValue();
+}
+?>
 <h3>Sumary : {{$sum}}</h3>
-<form action="{{ url('/pay') }}" method="post">
-	<input type="radio" name="reqId" value="{{ $reqId }}" checked>
-	<button type="submit">submit</button>
+<div align="center">
+	<form action="{{ url('/pay') }}" method="post">
+		<input type="radio" name="reqId" value="{{ $reqId }}" checked>
+		<br><br><button type="submit" class="btn btn-primary btn-lg active">submit</button>
+	</form>
+</div>
+
+<form id="myForm"action="{{ url('/logout') }}" method="post">
 </form>
-</body>
-</html>
+<script type="text/javascript">
+	function myFunction() {
+		document.getElementById("myForm").submit();
+	}
+
+
+</script>
+
+@stop
