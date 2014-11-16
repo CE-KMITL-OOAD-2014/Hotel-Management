@@ -151,4 +151,20 @@
 		}
 
 //----------------------------------------------------------
+		public function checkCus(){
+			if(Session::get('user', 'null')!='null'){
+				$user = unserialize(Session::get('user'));
+				if($user->getRole()=="manager"){
+					return View::make('manager-checkCus');
+				}
+				else{
+					Session::forget('user');
+					return Redirect::to('/');
+				}
+			}
+			else {
+				return Redirect::to('/login');
+			}
+		}
+//----------------------------------------------------------
 	}

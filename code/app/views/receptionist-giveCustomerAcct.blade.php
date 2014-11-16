@@ -16,14 +16,15 @@ Add User
 @section('body')
 <h1>Give Customer Account</h1>
 <div style="background-color:white">
-<div class="container">
-	<div class="row">
-		<div align="center">
-			<div class="box" border="20" >
-				<div class="container">
-					<center>
+	<div class="container">
+		<div class="row">
+			<div align="center">
+				<div class="box" border="20" >
+					<div class="container">
+						<center>
 							<?php
-							$id = CustomerServiceRepository::getIDbyBill($billId);
+							$customerServiceRepository = new CustomerServiceRepository();
+							$id = $customerServiceRepository->getIDbyBill($billId);
 							$customer = new CustomerService();
 							$customer->getCustomerService($id);
 							echo "<br><h2> Customer Room : ".$customer->getRoom()."</h2>";
@@ -32,13 +33,13 @@ Add User
 							?>
 							<br><br>
 							<a href="{{url('/')}}"><button type="button"class="btn btn-primary btn-lg active">Exit</button></a><br><br>
-							</center>
-							</div>
-							</div>
-							</div>
-							</div>
-							</div>
-							</div>				
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>				
 
 <form id="myForm"action="{{ url('/logout') }}" method="post">
 </form>

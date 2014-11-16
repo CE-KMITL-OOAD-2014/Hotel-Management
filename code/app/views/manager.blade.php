@@ -48,7 +48,14 @@ Add User
 							<br><br>
 							<img class="img-circle" src ="bill.png" >
 							<br><br><br>
-							<a href="/checkBill"><button  type="button" class="btn btn-primary btn-lg active">Check Bill</button></a>
+							<a href="/checkBill"><button  type="button" class="btn btn-primary btn-lg active">Load All Bill</button></a>
+							<br><br><br>
+						</div>
+						<div class="col-md-6">
+							<br><br>
+							<img class="img-circle" src ="bill.png" >
+							<br><br><br>
+							<a href="/checkCus"><button  type="button" class="btn btn-primary btn-lg active">Load All Customer</button></a>
 							<br><br><br>
 						</div>
 

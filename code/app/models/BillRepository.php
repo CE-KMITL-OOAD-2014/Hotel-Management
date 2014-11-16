@@ -1,6 +1,6 @@
 <?php 
 class BillRepository{
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = BillDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -13,7 +13,7 @@ class BillRepository{
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	// this will return as array of id of all bills which have the given billNumber(and it in unpaid state(0))
 
-	public static function getID($billNumber){
+	public function getID($billNumber){
 		$tmp = BillDB::where('billNumber','=',$billNumber)->get();
 		if(count($tmp)!=0){
 			for($i=0;$i<count($tmp);$i++){
@@ -28,14 +28,14 @@ class BillRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public static function newBill(){
+	public function newBill(){
 		$tmp = new BillDB();
 		$tmp->save();
 		return $tmp->id;
 	}
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-	public static function getTime($id){
+	public function getTime($id){
 		$tmp = BillDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->update_at;
@@ -45,7 +45,7 @@ class BillRepository{
 		}
 	}
 
-	public static function getBillNumber($id){
+	public function getBillNumber($id){
 		$tmp = BillDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->billNumber;
@@ -54,7 +54,7 @@ class BillRepository{
 			return NULL;
 		}
 	}
-	public static function getType($id){
+	public function getType($id){
 		$tmp = BillDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->type;
@@ -63,7 +63,7 @@ class BillRepository{
 			return NULL;
 		}
 	}
-	public static function getDetail($id){
+	public function getDetail($id){
 		$tmp = BillDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->detail;
@@ -72,7 +72,7 @@ class BillRepository{
 			return NULL;
 		}
 	}
-	public static function getValue($id){
+	public function getValue($id){
 		$tmp = BillDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->value;
@@ -81,7 +81,7 @@ class BillRepository{
 			return NULL;
 		}
 	}
-	public static function getState($id){
+	public function getState($id){
 		$tmp = BillDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->state;
@@ -93,7 +93,7 @@ class BillRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public static function setBillNumber($id, $data){
+	public function setBillNumber($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->billNumber=$data;
@@ -101,7 +101,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setType($id, $data){
+	public function setType($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->type=$data;
@@ -109,7 +109,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setDetail($id, $data){
+	public function setDetail($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->detail=$data;
@@ -117,7 +117,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setValue($id, $data){
+	public function setValue($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->value=$data;
@@ -125,7 +125,7 @@ class BillRepository{
 	 	}
 	 	else{}
 	}
-	public static function setState($id, $data){
+	public function setState($id, $data){
 		$tmp = BillDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->state=$data;

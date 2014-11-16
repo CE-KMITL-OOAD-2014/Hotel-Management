@@ -3,7 +3,7 @@ class CustomerRepository {
 		//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// check if exsit this user by search from DB
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -16,7 +16,7 @@ class CustomerRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// New User
 
-	public static function newCustomer(){ 
+	public function newCustomer(){ 
 		$tmp = new CustomerDB();
 		$tmp->save();
 		return $tmp->id;
@@ -25,7 +25,7 @@ class CustomerRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get ID of active Customer
 
-	public static function getID(){
+	public function getID(){
 		$tmp = CustomerDB::where('state','=',true)->get();
 		if(count($tmp)!=0){
 			for($i = 0 ; $i<count($tmp) ; $i++){
@@ -41,7 +41,7 @@ class CustomerRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get data from database
 
-	public static function getBillNumber($id){
+	public function getBillNumber($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->billNumber;
@@ -50,7 +50,7 @@ class CustomerRepository {
 			return NULL;
 		}
 	}
-	public static function getName($id){
+	public function getName($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->name;
@@ -59,7 +59,7 @@ class CustomerRepository {
 			return NULL;
 		}
 	}
-	public static function getSurname($id){
+	public function getSurname($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->surname;
@@ -68,7 +68,7 @@ class CustomerRepository {
 			return NULL;
 		}
 	}
-	public static function getNationalID($id){
+	public function getNationalID($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->nationalID;
@@ -77,7 +77,7 @@ class CustomerRepository {
 			return NULL;
 		}
 	}
-	public static function getDetail($id){
+	public function getDetail($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->detail;
@@ -86,7 +86,7 @@ class CustomerRepository {
 			return NULL;
 		}
 	}
-	public static function getState($id){
+	public function getState($id){
 	 	$tmp = CustomerDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->state;
@@ -97,9 +97,9 @@ class CustomerRepository {
 	}
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// Seve data from database
+	// Save data to database
 
-	public static function setBillNumber($id,$data){
+	public function setBillNumber($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->billNumber=$data;
@@ -107,7 +107,7 @@ class CustomerRepository {
 	 	}
 	 	else{}
 	}
-	public static function setName($id,$data){
+	public function setName($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->name=$data;
@@ -115,7 +115,7 @@ class CustomerRepository {
 	 	}
 	 	else{}
 	}
-	public static function setSurname($id,$data){
+	public function setSurname($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->surname=$data;
@@ -123,7 +123,7 @@ class CustomerRepository {
 	 	}
 	 	else{}
 	}
-	public static function setNationalID($id,$data){
+	public function setNationalID($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->nationalID=$data;
@@ -131,7 +131,7 @@ class CustomerRepository {
 	 	}
 	 	else{}
 	}
-	public static function setDetail($id,$data){
+	public function setDetail($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->detail=$data;
@@ -139,7 +139,7 @@ class CustomerRepository {
 	 	}
 	 	else{}
 	}
-	public static function setState($id,$data){
+	public function setState($id,$data){
 		$tmp = CustomerDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->state=$data;

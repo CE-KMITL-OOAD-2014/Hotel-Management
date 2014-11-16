@@ -37,7 +37,7 @@ Add User
 								$cleanId = $user->getCleanReqID();
 								if($cleanId!=0){
 									$tmp = RequestDB::find($cleanId);
-									if($tmp->state==1){
+									if($tmp->state>0){
 										echo "<a href=\"/completeClean\"><button>Complete Clean</button></a>";
 									}
 								}	
@@ -55,7 +55,7 @@ Add User
 								$mealId = $user->getMealReqID();
 								if($mealId!=0){
 									$tmp = RequestDB::find($mealId);
-									if($tmp->state==1){
+									if($tmp->state>0){
 										echo "<a href=\"/completeOrder\"><button>Complete Order</button></a>";
 									}
 								}?>

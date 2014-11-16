@@ -23,16 +23,22 @@ Add User
 					<div class="container">
 						<center>
 							<form action="{{ url('/confirmPay') }}" method="post">
-								Select Room
+								<h2>Select Room</h2>
 								<br><br>
 								<?php 
-								$req = RequestDB::where('type','=',3)->where('state','=',1)->get();
-								for($i = 0 ; $i < count($req) ; $i++){
-									echo "<br><input type='radio' name='reqId' value='".$req[$i]->id."'> ".$req[$i]->room;
-								}
+									$req = RequestDB::where('type','=',3)->where('state','=',1)->get();
+									for($i = 0 ; $i < count($req) ; $i++){
+										echo "<br><input type='radio' name='reqId' value='".$req[$i]->id."'> ".$req[$i]->room;
+									}
+									if(count($req)==0){
+										echo"<br><br><br>";
+									}
+									else{
+										echo "<br><br><div align=\"center\"><button type=\"submit\" class=\"btn btn-primary btn-lg active\">submit</button><br><br>";
+									}
+
 								?>	
-								<br><br>
-								<button type="submit" class="btn btn-primary btn-lg active">submit</button>
+								
 								<br><br>
 							</form>
 						</center>

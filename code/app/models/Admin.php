@@ -11,7 +11,8 @@ class Admin extends User
 //-----------------------------------------
 // Get Admin
 	public function getAdmin($id){
-		if(UserRepository::isExist($id)){
+		$userRepository = new UserRepository();
+		if($userRepository->isExist($id)){
 			$this->getUser($id);
 		}
 		else{
@@ -21,44 +22,49 @@ class Admin extends User
 
 
 //-----------------------------------------
-// Add new User 
+// Add new Staff 
 	public function addStaff($data){
-		$userId = UserRepository::newUser();
-		UserRepository::setUsername($userId,$data['username']);
-		UserRepository::setPassword($userId,$data['password']);
-		UserRepository::setRole($userId,$data['role']);
+		$userRepository = new UserRepository();
+		$userId = $userRepository->newUser();
+		$userRepository->setUsername($userId,$data['username']);
+		$userRepository->setPassword($userId,$data['password']);
+		$userRepository->setRole($userId,$data['role']);
 
-		$staffId = StaffRepository::newStaff();
-		StaffRepository::setUserID($staffId,$userId);
-		StaffRepository::setStaffID($staffId,$data['staffID']);
-		StaffRepository::setName($staffId,$data['name']);
-		StaffRepository::setIDnumber($staffId,$data['IDnumber']);
-		StaffRepository::setLocation($staffId,$data['location']);
-		StaffRepository::setEmail($staffId,$data['email']);
-		StaffRepository::setTel($staffId,$data['tel']);
+		$staffRepository = new StaffRepository();
+		$staffId = $staffRepository->newStaff();
+		$staffRepository->setUserID($staffId,$userId);
+		$staffRepository->setStaffID($staffId,$data['staffID']);
+		$staffRepository->setName($staffId,$data['name']);
+		$staffRepository->setIDnumber($staffId,$data['IDnumber']);
+		$staffRepository->setLocation($staffId,$data['location']);
+		$staffRepository->setEmail($staffId,$data['email']);
+		$staffRepository->setTel($staffId,$data['tel']);
 
 		if($data['role']=='kitchen'){
-			$kitchenRequestID = StaffRequestRepository::newStaffRequest();
-			StaffRequestRepository::setUserID($kitchenRequestID, $userId);
-			StaffRequestRepository::setRequestID($kitchenRequestID, 0);
+			$staffRequestRepository= new StaffRequestRepository();
+			$kitchenRequestID = $staffRequestRepository->newStaffRequest();
+			$staffRequestRepository->setUserID($kitchenRequestID, $userId);
+			$staffRequestRepository->setRequestID($kitchenRequestID, 0);
 		}
 	}
 //-----------------------------------------
 // Add new customer
 	public function addCustomer($data){
-		$userId = UserRepository::newUser();
-		UserRepository::setUsername($userId,$data['username']);
-		UserRepository::setPassword($userId,$data['password']);
-		UserRepository::setRole($userId,"customer");
+		$userRepository = new UserRepository();
+		$userId = $userRepository->newUser();
+		$userRepository->setUsername($userId,$data['username']);
+		$userRepository->setPassword($userId,$data['password']);
+		$userRepository->setRole($userId,"customer");
 		
-		$customerId = CustomerServiceRepository::newCustomerService();
-		CustomerServiceRepository::setUserID($customerId,$userId);
-		CustomerServiceRepository::setRoom($customerId,$data['room']);
-		CustomerServiceRepository::setState($customerId,false);
+		$customerServiceRepository = new CustomerServiceRepository();
+		$customerId = $customerServiceRepository->newCustomerService();
+		$customerServiceRepository->setUserID($customerId,$userId);
+		$customerServiceRepository->setRoom($customerId,$data['room']);
+		$customerServiceRepository->setState($customerId,false);
 	}
 
 //-----------------------------------------
-// Add new User 
+// Edit Staff 
 	public function editStaff($data){
 		$user =new Staff();
 		$user->getStaff($data['userID']);
@@ -74,16 +80,16 @@ class Admin extends User
 	}
 
 //-----------------------------------------
-// Add new User 
+// Delete Staff 
 	public function deleteStaff($id){
 		$user =new Staff();
 		$user->getStaff($id);
 		$user->delFromDB();
 	}
 //-----------------------------------------
-// Add new User 
+
 	public function editCustomer($data){
-		$user =new CustomerService();
+		$user = new CustomerService();
 		$user->getCustomerService($data['userID']);
 		$user->setUsername($data['username']);
 		$user->setPassword($data['password']);
@@ -92,7 +98,7 @@ class Admin extends User
 	}
 
 //-----------------------------------------
-// Add new User 
+
 	public function deleteCustomer($id){
 		$user =new CustomerService();
 		$user->getCustomerService($id);

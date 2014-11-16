@@ -69,29 +69,32 @@ class Bill{
 
 
 	public function getTime(){
-		return BillRepository::getTime($this->getId());
+		$billRepository = new BillRepository();
+		return $billRepository->getTime($this->getId());
 	}
 	//-----------------------------------------------------
 
 	public function getBill($id){
-		if(BillRepository::isExist($id)){
+		$billRepository = new BillRepository();
+		if($billRepository->isExist($id)){
 			$this->setId($id);
-			$this->setBillNumber(BillRepository::getBillNumber($id));
-			$this->setType(BillRepository::getType($id));
-			$this->setDetail(BillRepository::getDetail($id));
-			$this->setValue(BillRepository::getValue($id));
-			$this->setState(BillRepository::getState($id));			
+			$this->setBillNumber($billRepository->getBillNumber($id));
+			$this->setType($billRepository->getType($id));
+			$this->setDetail($billRepository->getDetail($id));
+			$this->setValue($billRepository->getValue($id));
+			$this->setState($billRepository->getState($id));			
 		}
 	}
 
 	//-----------------------------------------------------
 
 	public function saveToDB(){
-	 	BillRepository::setBillNumber($this->getId(), $this->getBillNumber());
-	 	BillRepository::setType($this->getId(), $this->getType());
-	 	BillRepository::setDetail($this->getId(), $this->getDetail());
-	 	BillRepository::setValue($this->getId(), $this->getValue());
-	 	BillRepository::setState($this->getId(), $this->getState());
+		$billRepository = new BillRepository();
+	 	$billRepository->setBillNumber($this->getId(), $this->getBillNumber());
+	 	$billRepository->setType($this->getId(), $this->getType());
+	 	$billRepository->setDetail($this->getId(), $this->getDetail());
+	 	$billRepository->setValue($this->getId(), $this->getValue());
+	 	$billRepository->setState($this->getId(), $this->getState());
 	}
 }
  ?>

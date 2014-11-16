@@ -42,15 +42,23 @@ Add User
 								<div class="col-md-3">
 									<?php 
 									$room = RoomDB::where('available','=',true)->get();
+									$tmp=false;
 									for($i = 0 ; $i < count($room) ; $i++){
-										echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
+										$customerServiceRepository = new CustomerServiceRepository();
+										$cusid = $customerServiceRepository->getIDbyRoom($room[$i]->roomNumber);
+										if($cusid!=NULL){
+											$tmp=true;
+											echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
+										}
+									}
+								
+									if($tmp) {
+										echo "<br><br><div align=\"center\"><button type=\"submit\" class=\"btn btn-primary btn-lg active\">submit</button><br><br>";
+									}
+									else {
+										echo "<br><br><br>";
 									}
 									?>	
-									
-
-									<br><br>
-									
-									<div align="center"><button type="submit" class="btn btn-primary btn-lg active">submit</button><br><br>
 									</div>
 								</div>
 							</form>

@@ -24,13 +24,35 @@ Add User
 						<div class="col-md-11">
 							<form action="{{ url('/checkout') }}" method="post">
 								<?php 
-								$room = RoomDB::where('available','=',false)->get();
-								for($i = 0 ; $i < count($room) ; $i++){
-									echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
-								}
-								?>	
+									$room = RoomDB::where('available','=',false)->get();
+									$tmp=false;
+									for($i = 0 ; $i < count($room) ; $i++){
+										$customerServiceRepository = new CustomerServiceRepository();
+										$cusid = $customerServiceRepository->getIDbyRoom($room[$i]->roomNumber);
+
+										if($cusid!=NULL){
+											$tmp=true;
+											$cusobj = new CustomerService();
+											$cusobj->getCustomerService($cusid);
+											if($cusobj->getState()){
+												echo "<br><input type='radio' name='roomNumber' value='".$room[$i]->roomNumber."'> ".$room[$i]->roomNumber;
+											}
+											else{
+												echo "<br><br><br>";
+											}
+										}
+									}
+									
+
+									if($tmp) {
+										echo "<br><br><div align=\"center\"><button type=\"submit\" class=\"btn btn-primary btn-lg active\">submit</button><br><br>";
+									}
+									else {
+										echo "<br><br><br>";
+									}
+									?>
 								<br><br>
-								<button  type="submit" class="btn btn-primary btn-lg active">submit</button>
+								
 								<br><br>
 							</form>
 						</div>

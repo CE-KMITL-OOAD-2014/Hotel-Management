@@ -17,22 +17,23 @@ Add User
 <h1>Payment Detail</h1>
 
 <?php 
-$req = new Requests();
-$req->getRequest($reqId);
-$sum = 0;
-$billid = BillRepository::getID($req->getBillNumber());
-for($i=0;$i<count($billid);$i++){
-	$bill = new Bill();
-	$bill->getBill($billid[$i]);
-	echo "<br>".$bill->getDetail()." ".$bill->getValue()." ".$bill->getTime();
-	$sum+=$bill->getValue();
-}
+	$req = new Requests();
+	$req->getRequest($reqId);
+	$sum = 0;
+	$billRepository = new BillRepository();
+	$billid = $billRepository->getID($req->getBillNumber());
+	for($i=0;$i<count($billid);$i++){
+		$bill = new Bill();
+		$bill->getBill($billid[$i]);
+		echo "<br>".$bill->getDetail()." ".$bill->getValue()." ".$bill->getTime();
+		$sum+=$bill->getValue();
+	}
 ?>
 <h3>Sumary : {{$sum}}</h3>
 <div align="center">
 	<form action="{{ url('/pay') }}" method="post">
-		<input type="radio" name="reqId" value="{{ $reqId }}" checked>
-		<br><br><button type="submit" class="btn btn-primary btn-lg active">submit</button>
+		<input type="hidden" name="reqId" value="{{ $reqId }}" checked>
+		<br><br><button type="submit" class="btn btn-primary btn-lg active">Submit</button>
 	</form>
 </div>
 

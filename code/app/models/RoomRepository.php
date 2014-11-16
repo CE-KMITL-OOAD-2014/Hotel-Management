@@ -1,7 +1,7 @@
 <?php 
 class RoomRepository{
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = RoomDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -13,7 +13,7 @@ class RoomRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public static function getID($roomNumber){
+	public function getID($roomNumber){
 		$tmp = RoomDB::where('roomNumber','=',$roomNumber)->get();
 		if(count($tmp)!=0){
 			return $tmp[0]->id;
@@ -25,20 +25,20 @@ class RoomRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	
-	public static function newRoom(){
+	public function newRoom(){
 		$tmp = new RoomDB();
 		$tmp->save();
 		return $tmp->id;
 	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public static function del($id){ 
+		public function del($id){ 
 		$tmp = RoomDB::find($id);
 		$tmp->delete();
 	}	
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	 public static function getRoomNumber($id){
+	 public function getRoomNumber($id){
 	 	$tmp = RoomDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->roomNumber;
@@ -47,7 +47,7 @@ class RoomRepository{
 			return NULL;
 		}
 	 }
-	 public static function getPrice($id){
+	 public function getPrice($id){
 	 	$tmp = RoomDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->price;
@@ -56,7 +56,7 @@ class RoomRepository{
 			return NULL;
 		}
 	 }
-	 public static function getBed($id){
+	 public function getBed($id){
 	 	$tmp = RoomDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->bed;
@@ -65,7 +65,7 @@ class RoomRepository{
 			return NULL;
 		}
 	 }
-	 public static function getRoomType($id){
+	 public function getRoomType($id){
 	 	$tmp = RoomDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->roomType;
@@ -74,7 +74,7 @@ class RoomRepository{
 			return NULL;
 		}
 	 }
-	 public static function getAvailable($id){
+	 public function getAvailable($id){
 	 	$tmp = RoomDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->available;
@@ -86,7 +86,7 @@ class RoomRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-	 public static function setRoomNumber($id,$data){
+	 public function setRoomNumber($id,$data){
 	 	$tmp = RoomDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->roomNumber=$data;
@@ -94,7 +94,7 @@ class RoomRepository{
 	 	}
 	 	else{}
 	 }
-	 public static function setPrice($id,$data){
+	 public function setPrice($id,$data){
 	 	$tmp = RoomDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->price=$data;
@@ -102,7 +102,7 @@ class RoomRepository{
 	 	}
 	 	else{}
 	 }
-	 public static function setBed($id,$data){
+	 public function setBed($id,$data){
 	 	$tmp = RoomDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->bed=$data;
@@ -110,7 +110,7 @@ class RoomRepository{
 	 	}
 	 	else{}
 	 }
-	 public static function setRoomType($id,$data){
+	 public function setRoomType($id,$data){
 	 	$tmp = RoomDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->roomType=$data;
@@ -118,7 +118,7 @@ class RoomRepository{
 	 	}
 	 	else{}
 	 }
-	 public static function setAvailable($id,$data){
+	 public function setAvailable($id,$data){
 	 	$tmp = RoomDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->available=$data;

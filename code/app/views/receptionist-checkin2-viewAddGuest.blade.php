@@ -26,35 +26,35 @@ Add User
 							<fieldset>
                   				<div class="form-group">
                   					<br><br>
-                  					<label for="text" class="col-md-2 control-label">name</label>
+                  					<label for="text" class="col-md-2 control-label">Name</label>
                    						<div class="col-md-9">
 											<input type="text" class="form-control" name="name" placeholder="name" required="" autofocus="">
 										</div>
 								</div>	
 								<div class="form-group">
                   					<br><br>
-                  					<label for="text" class="col-md-2 control-label">surname</label>
+                  					<label for="text" class="col-md-2 control-label">Surname</label>
                    						<div class="col-md-9">
 											<input type="text" class="form-control" name="surname" placeholder="surname" required="" autofocus="">
 										</div>
 								</div>
 								<div class="form-group">
                   					<br><br>
-                  					<label for="text" class="col-md-2 control-label">national ID</label>
+                  					<label for="text" class="col-md-2 control-label">National ID</label>
                    						<div class="col-md-9">
 											<input type="text" class="form-control" name="nationalID" placeholder="nationalID" required="" autofocus="">
 										</div>
 								</div>	
 								<div class="form-group">
                   					<br><br>
-                  					<label for="text" class="col-md-2 control-label">detail</label>
+                  					<label for="text" class="col-md-2 control-label">Detail</label>
                    						<div class="col-md-9">
 											<input type="text" class="form-control" name="detail" placeholder="detail" required="" autofocus="">
 										</div>
 								</div>	
 
 								<br><br>
-								<button type="submit"class="btn btn-primary btn-lg active">submit</button><br><br>
+								<button type="submit"class="btn btn-primary btn-lg active">Submit</button><br><br>
 							</form>
 						</div>
 					</div>

@@ -13,7 +13,6 @@ Add User
 @stop
 
 @section('body')
-
 <div style="background-color:white">
 	<div class="container">
 		<div class="row">
@@ -51,7 +50,7 @@ Add User
 										</div>
 								</div>
 
-								<br><br><input type="radio" name="userID" value="{{$userid}}" checked>
+								<br><br><input type="hidden" name="userID" value="{{$userid}}" checked>
 								<br><br>
 								<button type="submit" class="btn btn-primary btn-lg active">submit</button><br><br>
 								</fieldset>

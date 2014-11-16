@@ -62,15 +62,17 @@ class Staff extends User
 // get Staff
 
 	public function getStaff($id){
-		if(UserRepository::isExist($id)){
+		$userRepository = new UserRepository();
+		$staffRepository = new StaffRepository();
+		if($userRepository->isExist($id)){
 			$this->getUser($id);		
-			$staffId = StaffRepository::getID($this->getUsername());
-			$this->setStaffID(StaffRepository::getStaffID($staffId));
-			$this->setName(StaffRepository::getName($staffId));
-			$this->setLocation(StaffRepository::getLocation($staffId));
-			$this->setEmail(StaffRepository::getEmail($staffId));
-			$this->setTel(StaffRepository::getTel($staffId));
-			$this->setIDnumber(StaffRepository::getIDnumber($staffId));
+			$staffId = $staffRepository->getID($this->getUsername());
+			$this->setStaffID($staffRepository->getStaffID($staffId));
+			$this->setName($staffRepository->getName($staffId));
+			$this->setLocation($staffRepository->getLocation($staffId));
+			$this->setEmail($staffRepository->getEmail($staffId));
+			$this->setTel($staffRepository->getTel($staffId));
+			$this->setIDnumber($staffRepository->getIDnumber($staffId));
 		}
 		else {
 
@@ -81,76 +83,31 @@ class Staff extends User
 // set Staff
 		public function saveToDB(){
 			parent::saveToDB();
-			$id = StaffRepository::getID($this->getUsername());
-			if(StaffRepository::isExist($id)){
-				StaffRepository::setStaffID($id,$this->getStaffID());
-				StaffRepository::setName($id,$this->getName());
-				StaffRepository::setIDnumber($id,$this->getIDnumber());
-				StaffRepository::setLocation($id,$this->getLocation());
-				StaffRepository::setEmail($id,$this->getEmail());
-				StaffRepository::setTel($id,$this->getTel());
+			$staffRepository = new StaffRepository();
+			$id = $staffRepository->getID($this->getUsername());
+			if($staffRepository->isExist($id)){
+				$staffRepository->setStaffID($id,$this->getStaffID());
+				$staffRepository->setName($id,$this->getName());
+				$staffRepository->setIDnumber($id,$this->getIDnumber());
+				$staffRepository->setLocation($id,$this->getLocation());
+				$staffRepository->setEmail($id,$this->getEmail());
+				$staffRepository->setTel($id,$this->getTel());
 			}
 			else {
 			}
 		}
 
 //-----------------------------------------
-// set Staff
+// delete from DB
 		public function delFromDB(){
-			$id = StaffRepository::getID($this->getUsername());
-			if(StaffRepository::isExist($id)){
+			$staffRepository = new StaffRepository();
+			$id = $staffRepository->getID($this->getUsername());
+			if($staffRepository->isExist($id)){
 				parent::delFromDB();
-				StaffRepository::del($id);
+				$staffRepository->del($id);
 			}
 			else {
 			}
 		}
-//-----------------------------------------
-// coppy constructor
-/*		public function coppyStaff($tmp){
-			$this->id=$tmp->getId();
-			$this->role=$tmp->getRole();
-			$this->username=$tmp->getUsername();
-			$this->password=$tmp->getPassword();
-		}
-*/
-//-----------------------------------------
-// print line
-	public function println(){
-		echo 	"Username : ".$this->username.
-				"\nPassword : ".$this->password.
-				"\nRole : ".$this->role.
-				"\nstaffID : ".$this->staffID.
-				"\nName : ".$this->name.
-				"\nIDnum : ".$this->IDnumber.
-				"\nLocation : ".$this->location.
-				"\nEmail : ".$this->email.
-				"\nTel : ".$this->tel."\n";
 	}
-}
-/*
-		public static function getStaff($user){
-			if($user!=NULL){
-				if($user->getRole()=="staff") {
-					$staff = new Staff();
-					$staff = $user->coppyUser();
-					$staff->setStaffID(StaffRepository::getStaffID());
-					$staff->setName(StaffRepository::getName());
-					$staff->setIDnumber(StaffRepository::getIDnumber());
-					$staff->setLocation(StaffRepository::getLocation());
-					$staff->setEmail(StaffRepository::getEmail());
-					$staff->setTel(StaffRepository::getTel());
-					return $staff;
-				}
-				else {
-					return NULL;
-				}
-			}
-			else {
-				return NULL;
-			}
-
-
-		}
-*/
 ?>

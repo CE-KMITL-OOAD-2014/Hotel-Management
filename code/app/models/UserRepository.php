@@ -7,7 +7,7 @@ class userRepository
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// check if exsit this user by search from DB
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -20,7 +20,7 @@ class userRepository
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// new user
 
-	public static function newUser(){
+	public function newUser(){
 		$tmp = new UserDB();
 		$tmp->save();
 		return $tmp->id;
@@ -28,14 +28,14 @@ class userRepository
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 
-	public static function del($id){ 
+	public function del($id){ 
 		$tmp = UserDB::find($id);
 		$tmp->delete();
 	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get ID of Object by username
 
-	public static function getID($username){
+	public function getID($username){
 		$tmp = UserDB::where('username','=',$username)->get();
 		if(count($tmp)!=0){
 			return $tmp->id;
@@ -48,7 +48,7 @@ class userRepository
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get data from database
 
-	public static function getRole($id){
+	public function getRole($id){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->role;
@@ -57,7 +57,7 @@ class userRepository
 			return NULL;
 		}
 	}
-	public static function getUsername($id){
+	public function getUsername($id){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->username;
@@ -66,7 +66,7 @@ class userRepository
 			return NULL;
 		}
 	}
-	public static function getPassword($id){
+	public function getPassword($id){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->password;
@@ -79,7 +79,7 @@ class userRepository
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Seve data to database
 
-	public static function setRole($id,$data){
+	public function setRole($id,$data){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			$tmp->role=$data;
@@ -87,7 +87,7 @@ class userRepository
 		}
 		else {}
 	}
-	public static function setUsername($id,$data){
+	public function setUsername($id,$data){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			$tmp->username=$data;
@@ -95,7 +95,7 @@ class userRepository
 		}
 		else {}
 	}
-	public static function setPassword($id,$data){
+	public function setPassword($id,$data){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			$tmp->password=$data;

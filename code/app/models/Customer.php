@@ -77,14 +77,15 @@ class Customer {
 // get customer
 
 	public function getCustomer($id){
-		if(CustomerRepository::isExist($id)){
+		$customerRepository = new CustomerRepository();
+		if($customerRepository->isExist($id)){
 			$this->setId($id);
-	 		$this->setbillNumber(CustomerRepository::getBillNumber($id));
-	 		$this->setName(CustomerRepository::getName($id));
-	 		$this->setSurname(CustomerRepository::getSurname($id));
-	 		$this->setNationalID(CustomerRepository::getNationalID($id));
-	 		$this->setDetail(CustomerRepository::getDetail($id));
-	 		$this->setState(CustomerRepository::getState($id));
+	 		$this->setbillNumber($customerRepository->getBillNumber($id));
+	 		$this->setName($customerRepository->getName($id));
+	 		$this->setSurname($customerRepository->getSurname($id));
+	 		$this->setNationalID($customerRepository->getNationalID($id));
+	 		$this->setDetail($customerRepository->getDetail($id));
+	 		$this->setState($customerRepository->getState($id));
 		}
 		else {
 			return NULL;
@@ -93,18 +94,19 @@ class Customer {
 
 //-----------------------------------------
 // save Customer
-		public function setCustomer(){
-			if(CustomerRepository::isExist($this->getId())){
-	 			customerRepository::setBillNumber($this->getBillNumber());
-	 			customerRepository::setName($this->getName());
-	 			customerRepository::setSurname($this->getSurname());
-	 			customerRepository::setNationalID($this->getNationalID());
-	 			customerRepository::setDetail($this->getDetail());
-	 			customerRepository::setState($this->getState());
-			}
-			else {
-			}
+	public function setCustomer(){
+		$customerRepository = new CustomerRepository();
+		if($customerRepository->isExist($this->getId())){
+ 			$customerRepository->setBillNumber($this->getBillNumber());
+ 			$customerRepository->setName($this->getName());
+ 			$customerRepository->setSurname($this->getSurname());
+ 			$customerRepository->setNationalID($this->getNationalID());
+ 			$customerRepository->setDetail($this->getDetail());
+ 			$customerRepository->setState($this->getState());
 		}
+		else {
+		}
+	}
 
 }
 ?>

@@ -10,7 +10,8 @@ class Receptionist extends Staff
 // Get Receptionist
 
 	public function getReceptionist($id){
-		if(UserRepository::isExist($id)){
+		$userRepository = new UserRepository();
+		if($userRepository->isExist($id)){
 			$this->getStaff($id);
 		}
 		else{
@@ -26,7 +27,6 @@ class Receptionist extends Staff
 	    for ($i = 0; $i < $length; $i++) {
 	        $randomString .= $characters[rand(0, strlen($characters) - 1)];
 	    }
-	    //echo $randomString; exit();
 	    return $randomString;
 	}
 	// code from http://stackoverflow.com/questions/4356289/php-random-string-generator
@@ -36,10 +36,9 @@ class Receptionist extends Staff
 	// 2. set room state to unavailable 
 	// 3. create customer object
 
-	//DO NOT FORGET!!! customer Service must have it own room number already!!
-
 	public function checkin($room,$billNumber){
-		$id=CustomerServiceRepository::getIDbyRoom($room);
+		$customerServiceRepository = new CustomerServiceRepository();
+		$id=$customerServiceRepository->getIDbyRoom($room);
 		$obj = new CustomerService();
 		$obj->getCustomerService($id);
 		$obj->setBillNumber($billNumber);
@@ -47,8 +46,8 @@ class Receptionist extends Staff
 		$obj->setState(true);
 		$obj->saveToDB();
 
-
-		$roomID = RoomRepository::getID($room);
+		$roomRepository = new RoomRepository();
+		$roomID = $roomRepository->getID($room);
 		$roomObj = new Room();
 		$roomObj->getRoom($roomID);
 		$roomObj->setAvailable(false);
@@ -56,35 +55,38 @@ class Receptionist extends Staff
 	}
 
 	public function reqCheckRoom($room){
-		$id=CustomerServiceRepository::getIDbyRoom($room);
+		$customerServiceRepository = new CustomerServiceRepository();
+		$id=$customerServiceRepository->getIDbyRoom($room);
 		$obj = new CustomerService();
 		$obj->getCustomerService($id);
 		$obj->setState(false);
 		$obj->saveToDB();
 
-		$roomId = RoomRepository::getID($room);
+		$roomRepository = new RoomRepository();
+		$roomId = $roomRepository->getID($room);
 		$roomObj = new Room();
 		$roomObj->getRoom($roomId);
 		$roomObj->setAvailable(1);
 		$roomObj->saveToDB();
 
-		$id = RequestRepository::newRequest();
-		RequestRepository::setType($id, 3);
-		RequestRepository::setRoom($id, $room);
-		RequestRepository::setBillNumber($id, $obj->getBillNumber());
-		RequestRepository::setCustomerServiceID($id, 0);
-		RequestRepository::setState($id, 0);
+		$requestRepository = new RequestRepository();
+		$id = $requestRepository->newRequest();
+		$requestRepository->setType($id, 3);
+		$requestRepository->setRoom($id, $room);
+		$requestRepository->setBillNumber($id, $obj->getBillNumber());
+		$requestRepository->setCustomerServiceID($id, 0);
+		$requestRepository->setState($id, 0);
 	}
 
 	public function addGuest($data){
-
-		$id = CustomerRepository::newCustomer();
-		CustomerRepository::setName($id,$data['name']);
-		CustomerRepository::setSurname($id,$data['surname']);
-		CustomerRepository::setNationalID($id,$data['nationalID']);
-		CustomerRepository::setDetail($id,$data['detail']);
-		CustomerRepository::setBillNumber($id,$data['billNumber']);
-		CustomerRepository::setState($id,true);
+		$customerRepository = new CustomerRepository();
+		$id = $customerRepository->newCustomer();
+		$customerRepository->setName($id,$data['name']);
+		$customerRepository->setSurname($id,$data['surname']);
+		$customerRepository->setNationalID($id,$data['nationalID']);
+		$customerRepository->setDetail($id,$data['detail']);
+		$customerRepository->setBillNumber($id,$data['billNumber']);
+		$customerRepository->setState($id,true);
 	}
 
 	public function pay($reqId){

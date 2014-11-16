@@ -49,7 +49,7 @@ Add User
 											<input type="text" class="form-control" name="price" value="{{$meal->getPrice()}}">
 										</div>
 									</div>
-									<br><br><input type="radio" name="mealID" value="{{$mealid}}" checked>
+									<br><br><input type="hidden" name="mealID" value="{{$mealid}}" checked>
 									<br><br>
 									<button type="submit" class="btn btn-danger btn-lg active">submit</button><br><br><br>
 								</form>

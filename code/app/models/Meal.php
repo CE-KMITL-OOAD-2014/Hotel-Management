@@ -18,12 +18,13 @@ class Meal {
 // Get
 
 	public function getMeal($id){
-		if(MealRepository::isExist($id)){
+		$mealRepository = new MealRepository();
+		if($mealRepository->isExist($id)){
 			$this->setId($id);
-			$this->setName(MealRepository::getName($id));
-			$this->setPic(MealRepository::getPic($id));
-			$this->setPrice(MealRepository::getPrice($id));
-			$this->setDesc(MealRepository::getDesc($id));
+			$this->setName($mealRepository->getName($id));
+			$this->setPic($mealRepository->getPic($id));
+			$this->setPrice($mealRepository->getPrice($id));
+			$this->setDesc($mealRepository->getDesc($id));
 		}
 		else{
 			
@@ -33,11 +34,11 @@ class Meal {
 //-----------------------------------------
 // save
 	public function saveToDB(){
-		//parent::saveToDB();
-		MealRepository::setName($this->getID(), $this->getName());
-		MealRepository::setPic($this->getID(), $this->getPic());
-		MealRepository::setPrice($this->getID(), $this->getPrice());
-		MealRepository::setDesc($this->getID(), $this->getDesc());
+		$mealRepository = new MealRepository();
+		$mealRepository->setName($this->getID(), $this->getName());
+		$mealRepository->setPic($this->getID(), $this->getPic());
+		$mealRepository->setPrice($this->getID(), $this->getPrice());
+		$mealRepository->setDesc($this->getID(), $this->getDesc());
 	}
 //-----------------------------------------
 
@@ -74,10 +75,11 @@ class Meal {
 	}
 
 //-----------------------------------------
-// set Meal
+
 		public function delFromDB(){
-			if(MealRepository::isExist($this->getId())){
-				MealRepository::del($this->getId());
+			$mealRepository = new MealRepository();
+			if($mealRepository->isExist($this->getId())){
+				$mealRepository->del($this->getId());
 			}
 			else {
 			}

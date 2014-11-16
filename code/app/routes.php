@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -12,6 +11,10 @@
 */
 
 //Route::get('/', 'HomeController@home');
+
+Route::get('/maidFootLayout', 'LayoutController@maid');
+Route::get('/kitchenFootLayout', 'LayoutController@kitchen');
+Route::get('/ManagerFootLayout', 'LayoutController@manager');
 
 // Home
 Route::get('/', 'HomeController@home');
@@ -38,8 +41,9 @@ Route::get('/editRoom','ManagerController@viewEditRoom');
 Route::post('/editRoom','ManagerController@viewRoomEdit');
 Route::post('/editRoomComplete', 'ManagerController@editRoomComplete');
 Route::get('/checkReq','ManagerController@viewCheckReq');
-Route::get('/checkBill','ManagerController@checkBill');
 Route::post('/cancelReq','ManagerController@cancelReq');
+Route::get('/checkBill','ManagerController@checkBill');
+Route::get('/checkCus','ManagerController@checkCus');
 
 //Receptionist
 Route::get('/checkin', 'ReceptionistController@viewCheckin');
@@ -51,7 +55,6 @@ Route::post('/addGuest', 'ReceptionistController@addGuest');
 Route::get('/pay', 'ReceptionistController@viewPay');
 Route::post('/confirmPay', 'ReceptionistController@confirmPay');
 Route::post('/pay', 'ReceptionistController@pay');
-//Route::post('/waitForCheck', 'ReceptionistController@waitForCheck');
 
 
 //Customer Service
@@ -75,13 +78,3 @@ Route::post('/acceptOrder', 'KitchenController@acceptOrder');
 Route::get('/editMeal','KitchenController@viewEditMeal');
 Route::post('/editMeal','KitchenController@viewMealEdit');
 Route::post('/editMealComplete', 'KitchenController@editMealComplete');
-
-//temp
-Route::post('/createAdmin', 'HomeController@createAdmin');
-
-//Route::post('/checkin', 'ReceptionistController@checkin');
-/*
-Route::get('/test', function() {
-return View::make('test');
-});
-*/

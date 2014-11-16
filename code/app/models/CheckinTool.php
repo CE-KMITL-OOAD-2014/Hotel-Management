@@ -1,4 +1,5 @@
 <?php 
+// user only for count customer to add to database
 class CheckinTool
 {
 	private $billNumber;

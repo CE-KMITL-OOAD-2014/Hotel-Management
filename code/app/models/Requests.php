@@ -58,15 +58,16 @@ class Requests
 //-----------------------------------------
 // Get
 	public function getRequest($id){
-		if(RequestRepository::isExist($id)){
+		$requestRepository = new RequestRepository();
+		if($requestRepository->isExist($id)){
 			$this->setId($id);
-	 		$this->setType(RequestRepository::getType($id));
-	 		$this->setRoom(RequestRepository::getRoom($id));
-	 		$this->setBillNumber(RequestRepository::getBillNumber($id));
-	 		$this->setCustomerServiceID(RequestRepository::getCustomerServiceID($id));
-	 		$this->setState(RequestRepository::getState($id));
-	 		$this->setMealID(RequestRepository::getMealID($id));
-	 		$this->setDate(RequestRepository::getDate($id));
+	 		$this->setType($requestRepository->getType($id));
+	 		$this->setRoom($requestRepository->getRoom($id));
+	 		$this->setBillNumber($requestRepository->getBillNumber($id));
+	 		$this->setCustomerServiceID($requestRepository->getCustomerServiceID($id));
+	 		$this->setState($requestRepository->getState($id));
+	 		$this->setMealID($requestRepository->getMealID($id));
+	 		$this->setDate($requestRepository->getDate($id));
 		}
 		else{
 		}
@@ -75,14 +76,14 @@ class Requests
 //-----------------------------------------
 // save
 	public function saveToDB(){
-		//parent::saveToDB();
-		RequestRepository::setType($this->getID(), $this->getType());
-		RequestRepository::setRoom($this->getID(), $this->getRoom());
-		RequestRepository::setBillNumber($this->getID(), $this->getBillNumber());
-		RequestRepository::setCustomerServiceID($this->getID(), $this->getCustomerServiceID());
-		RequestRepository::setState($this->getID(), $this->getState());
-		RequestRepository::setMealID($this->getID(), $this->getMealID());
-		RequestRepository::setDate($this->getID(), $this->getDate());
+		$requestRepository = new RequestRepository();
+		$requestRepository->setType($this->getID(), $this->getType());
+		$requestRepository->setRoom($this->getID(), $this->getRoom());
+		$requestRepository->setBillNumber($this->getID(), $this->getBillNumber());
+		$requestRepository->setCustomerServiceID($this->getID(), $this->getCustomerServiceID());
+		$requestRepository->setState($this->getID(), $this->getState());
+		$requestRepository->setMealID($this->getID(), $this->getMealID());
+		$requestRepository->setDate($this->getID(), $this->getDate());
 	}
 //-----------------------------------------
 // get

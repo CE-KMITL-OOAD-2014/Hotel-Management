@@ -19,15 +19,16 @@ class CustomerService extends User{
 // Get customer service Object (use id of the User(parent class) not id of this field)
 
 	public function getCustomerService($id){
-		if(UserRepository::isExist($id)){
+		$userRepository = new UserRepository();
+		if($userRepository->isExist($id)){
 			$this->getUser($id);
-
-			$cusServId = CustomerServiceRepository::getID($this->getUsername());
-			$this->setState(CustomerServiceRepository::getState($cusServId));
-			$this->setRoom(CustomerServiceRepository::getRoom($cusServId));
-			$this->setMealReqID(CustomerServiceRepository::getMealReqID($cusServId));
-			$this->setCleanReqID(CustomerServiceRepository::getCleanReqID($cusServId));
-			$this->setBillNumber(CustomerServiceRepository::getBillNumber($cusServId));
+			$customerServiceRepository = new CustomerServiceRepository();
+			$cusServId = $customerServiceRepository->getID($this->getUsername());
+			$this->setState($customerServiceRepository->getState($cusServId));
+			$this->setRoom($customerServiceRepository->getRoom($cusServId));
+			$this->setMealReqID($customerServiceRepository->getMealReqID($cusServId));
+			$this->setCleanReqID($customerServiceRepository->getCleanReqID($cusServId));
+			$this->setBillNumber($customerServiceRepository->getBillNumber($cusServId));
 		}
 		else{
 		}
@@ -35,14 +36,15 @@ class CustomerService extends User{
 //-----------------------------------------
 // save
 	public function saveToDB(){
-		//parent::saveToDB();
-		$id = CustomerServiceRepository::getID($this->getUsername());
-		CustomerServiceRepository::setState($id, $this->getState());
-		CustomerServiceRepository::setRoom($id, $this->getRoom());
-		CustomerServiceRepository::setCleanReqID($id, $this->getCleanReqID());
-		CustomerServiceRepository::setMealReqID($id, $this->getMealReqID());
-		CustomerServiceRepository::setBillNumber($id, $this->getBillNumber());
-		UserRepository::setPassword($this->getId(), $this->getPassword());
+		$userRepository = new UserRepository();
+		$customerServiceRepository = new CustomerServiceRepository();
+		$id = $customerServiceRepository->getID($this->getUsername());
+		$customerServiceRepository->setState($id, $this->getState());
+		$customerServiceRepository->setRoom($id, $this->getRoom());
+		$customerServiceRepository->setCleanReqID($id, $this->getCleanReqID());
+		$customerServiceRepository->setMealReqID($id, $this->getMealReqID());
+		$customerServiceRepository->setBillNumber($id, $this->getBillNumber());
+		$userRepository->setPassword($this->getId(), $this->getPassword());
 	}
 
 //-----------------------------------------
@@ -89,7 +91,8 @@ class CustomerService extends User{
 //-----------------------------------------
 
 	public function addCleanRequest(){
-		$id = RequestRepository::newRequest();
+		$requestRepository = new RequestRepository();
+		$id = $requestRepository->newRequest();
 		$req = new Requests();
 		$req->getRequest($id);
 		$req->setType(1);
@@ -106,7 +109,8 @@ class CustomerService extends User{
 //-----------------------------------------
 
 	public function addmealRequest($mealNumber){
-		$id = RequestRepository::newRequest();
+		$requestRepository = new RequestRepository();
+		$id = $requestRepository->newRequest();
 		$req = new Requests();
 		$req->getRequest($id);
 		$req->setType(2);
@@ -147,16 +151,17 @@ class CustomerService extends User{
 	}
 
 //-----------------------------------------
-// set Meal
-		public function delFromDB(){
-			$id = CustomerServiceRepository::getID($this->getUsername());
-			if(CustomerServiceRepository::isExist($id)){
-				parent::delFromDB();
-				CustomerServiceRepository::del($id);
-			}
-			else {
-			}
+
+	public function delFromDB(){
+		$customerServiceRepository = new CustomerServiceRepository();
+		$id = $customerServiceRepository->getID($this->getUsername());
+		if($customerServiceRepository->isExist($id)){
+			parent::delFromDB();
+			$customerServiceRepository->del($id);
 		}
+		else {
+		}
+	}
 //-----------------------------------------
 }
 

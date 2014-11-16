@@ -1,7 +1,7 @@
 <?php 
 class StaffRequestRepository{
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = StaffRequestDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -14,7 +14,7 @@ class StaffRequestRepository{
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	// user id of user, not of staff
 
-	public static function getID($userID){
+	public function getID($userID){
 		$tmp = StaffRequestDB::where('userID','=',$userID)->get();
 		if(count($tmp)!=0){
 			return $tmp[0]->id;
@@ -26,7 +26,7 @@ class StaffRequestRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	
-	public static function newStaffRequest(){
+	public function newStaffRequest(){
 		$tmp = new StaffRequestDB();
 		$tmp->save();
 		return $tmp->id;
@@ -34,7 +34,7 @@ class StaffRequestRepository{
 	
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public static function getUserID($id){
+	public function getUserID($id){
 		$tmp = StaffRequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->userID;
@@ -43,7 +43,7 @@ class StaffRequestRepository{
 			return NULL;
 		}
 	}
-	public static function getRequestID($id){
+	public function getRequestID($id){
 		$tmp = StaffRequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->requestID;
@@ -53,7 +53,7 @@ class StaffRequestRepository{
 		}
 	}
 
-	public static function setUserID($id, $data){
+	public function setUserID($id, $data){
 		$tmp = StaffRequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->userID=$data;
@@ -61,7 +61,7 @@ class StaffRequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setRequestID($id, $data){
+	public function setRequestID($id, $data){
 		$tmp = StaffRequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->requestID=$data;

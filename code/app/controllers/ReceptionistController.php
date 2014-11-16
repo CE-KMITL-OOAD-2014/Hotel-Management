@@ -44,7 +44,8 @@
 					$data = Input::all();
 					$tool = new CheckinTool();
 					$tool->setPerson($data['person']);
-					$tool->setBillNumber(GlobalRepository::getBillNumber());
+					$globalRepository =  new GlobalRepository();
+					$tool->setBillNumber($globalRepository->getBillNumber());
 					Session::put('checkinTool', serialize($tool));
 
 					$user->checkin($data['roomNumber'],$tool->getBillNumber());

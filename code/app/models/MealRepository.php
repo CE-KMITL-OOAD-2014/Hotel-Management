@@ -1,7 +1,7 @@
 <?php 
 class MealRepository{
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = MealDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -13,20 +13,20 @@ class MealRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public static function newMeal(){
+	public function newMeal(){
 		$tmp = new MealDB();
 		$tmp->save();
 		return $tmp->id;
 	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public static function del($id){ 
+		public function del($id){ 
 		$tmp = MealDB::find($id);
 		$tmp->delete();
 	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-	public static function getName($id){
+	public function getName($id){
 		$tmp = MealDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->name;
@@ -35,7 +35,7 @@ class MealRepository{
 			return NULL;
 		}
 	}
-	public static function getPic($id){
+	public function getPic($id){
 		$tmp = MealDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->pic;
@@ -44,7 +44,7 @@ class MealRepository{
 			return NULL;
 		}
 	}
-	public static function getPrice($id){
+	public function getPrice($id){
 		$tmp = MealDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->price;
@@ -53,7 +53,7 @@ class MealRepository{
 			return NULL;
 		}
 	}
-	public static function getDesc($id){
+	public function getDesc($id){
 		$tmp = MealDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->desc;
@@ -65,7 +65,7 @@ class MealRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -	
 
-	public static function setName($id, $data){
+	public function setName($id, $data){
 	 	$tmp = MealDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->name=$data;
@@ -73,7 +73,7 @@ class MealRepository{
 	 	}
 	 	else{}
 	}
-	public static function setPic($id, $data){
+	public function setPic($id, $data){
 	 	$tmp = MealDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->pic=$data;
@@ -81,7 +81,7 @@ class MealRepository{
 	 	}
 	 	else{}
 	}
-	public static function setPrice($id, $data){
+	public function setPrice($id, $data){
 	 	$tmp = MealDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->price=$data;
@@ -89,7 +89,7 @@ class MealRepository{
 	 	}
 	 	else{}
 	}
-	public static function setDesc($id, $data){
+	public function setDesc($id, $data){
 	 	$tmp = MealDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->desc=$data;

@@ -1,34 +1,23 @@
 <?php 
 class Maid extends Staff
 {
-	//private $requestID;
 	public function __construct()
 	{
 		parent::__construct();
-	//	$requestID = 0;
 	}
 
-
-	//public function getRequestID(){
-	//	return $this->requestID;
-	//}
-
-	//public function setRequestID($data){
-	//	$this->requestID = $data;
-	//}
 //-----------------------------------------
 
 	public function saveToDB(){
 		parent::saveToDB();
-	//	$reqIdDB=StaffRequestRepository::getID($this->getID());
-	//	StaffRequestRepository::setRequestID($reqIdDB,$this->getRequestID());
 	}
 
 //-----------------------------------------
 // Get Maid
 
 	public function getMaid($id){
-		if(UserRepository::isExist($id)){		
+		$userRepository = new UserRepository();
+		if($userRepository->isExist($id)){		
 			$this->getStaff($id);
 		}
 		else{
@@ -43,14 +32,16 @@ class Maid extends Staff
 		$reqTmp->setState(1);
 		$reqTmp->saveToDB();
 
-		$billid = BillRepository::newBill();
+		$billRepository = new BillRepository();
+		$globalRepository = new GlobalRepository();
+		$billid = $billRepository->newBill();
 		$bill = new Bill();
 		$bill->setId($billid);
 		$bill->setBillNumber($reqTmp->getBillNumber());
 		$bill->setType(0);
 		$bill->setDetail("Cleaning Request Charge");
 		$bill->setState(0);
-		$bill->setValue(GlobalRepository::getCleanCharge());
+		$bill->setValue($globalRepository->getCleanCharge());
 		$bill->saveToDB();
 	}
 //-----------------------------------------
@@ -61,7 +52,9 @@ class Maid extends Staff
 		$reqTmp->setState(1);
 		$reqTmp->saveToDB();
 
-		$billid = BillRepository::newBill();
+		$billRepository = new BillRepository();
+
+		$billid = $billRepository->newBill();
 		$bill = new Bill();
 		$bill->setId($billid);
 		$bill->setBillNumber($data['billNumber']);
@@ -72,7 +65,7 @@ class Maid extends Staff
 		$bill->saveToDB();
 
 
-		$billid = BillRepository::newBill();
+		$billid = $billRepository->newBill();
 		$bill = new Bill();
 		$bill->setId($billid);
 		$bill->setBillNumber($data['billNumber']);
@@ -81,8 +74,6 @@ class Maid extends Staff
 		$bill->setState(0);
 		$bill->setValue($data['damage']);
 		$bill->saveToDB();
-		//$this->setRequestID($cleanID);
-		//$this->saveToDB();
 	}
 //-----------------------------------------
 

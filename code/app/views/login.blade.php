@@ -25,11 +25,9 @@ LOGIN
   			</form>
   			<br><br>
   			</center>
-  			<form action="{{ url('/createAdmin') }}" method="post">
-    			<button type="submit" class="btn btn-warning">Create first admin</button>
-  			</form>
       </div>
   </div>
   </div>
 </div>
+
 @stop

@@ -73,9 +73,27 @@
     <div class="prepush"></div>
     <div class="push"></div>
 </div>
-    <footer class="text-center" id="body-footer" style="background: #590915;">
-  </footer>
+    <div id="content"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+    (function($)
+    {
+        $(document).ready(function()
+        {
+            $.ajaxSetup(
+            {
+
+            });
+            var $container = $("#content");
+            $container.load("/kitchenFootLayout");
+            var refreshId = setInterval(function()
+            {
+                $container.load('/kitchenFootLayout');
+            }, 3000);
+        });
+    })(jQuery);
+    </script>
   </body>
 </html>

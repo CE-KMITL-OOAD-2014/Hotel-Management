@@ -26,13 +26,14 @@ class Room
 //-----------------------------------------
 // Get
 	public function getRoom($id){
-		if(RoomRepository::isExist($id)){
+		$roomRepository = new RoomRepository();
+		if($roomRepository->isExist($id)){
 			$this->setId($id);
-			$this->setRoomNumber(RoomRepository::getRoomNumber($id));
-			$this->setPrice(RoomRepository::getPrice($id));
-			$this->setBed(RoomRepository::getBed($id));
-			$this->setRoomType(RoomRepository::getRoomType($id));
-			$this->setAvailable(RoomRepository::getAvailable($id));
+			$this->setRoomNumber($roomRepository->getRoomNumber($id));
+			$this->setPrice($roomRepository->getPrice($id));
+			$this->setBed($roomRepository->getBed($id));
+			$this->setRoomType($roomRepository->getRoomType($id));
+			$this->setAvailable($roomRepository->getAvailable($id));
 		}
 		else{
 			
@@ -41,12 +42,12 @@ class Room
 //-----------------------------------------
 // save
 	public function saveToDB(){
-		//parent::saveToDB();
-		RoomRepository::setRoomNumber($this->getID(), $this->getRoomNumber());
-		RoomRepository::setPrice($this->getID(), $this->getPrice());
-		RoomRepository::setBed($this->getID(), $this->getBed());
-		RoomRepository::setRoomType($this->getID(), $this->getRoomType());
-		RoomRepository::setAvailable($this->getID(), $this->getAvailable());
+		$roomRepository = new RoomRepository();
+		$roomRepository->setRoomNumber($this->getID(), $this->getRoomNumber());
+		$roomRepository->setPrice($this->getID(), $this->getPrice());
+		$roomRepository->setBed($this->getID(), $this->getBed());
+		$roomRepository->setRoomType($this->getID(), $this->getRoomType());
+		$roomRepository->setAvailable($this->getID(), $this->getAvailable());
 	}
 //-----------------------------------------
 //get set method
@@ -90,10 +91,11 @@ class Room
 	 }
 
 //-----------------------------------------
-// set Meal
+
 		public function delFromDB(){
-			if(RoomRepository::isExist($this->getId())){
-				RoomRepository::del($this->getId());
+			$roomRepository = new RoomRepository();
+			if($roomRepository->isExist($this->getId())){
+				$roomRepository->del($this->getId());
 			}
 			else {
 			}

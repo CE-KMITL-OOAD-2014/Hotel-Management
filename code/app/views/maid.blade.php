@@ -25,7 +25,7 @@ Add User
 					<div class="container">
 							<center>
 							<br><br><br>
-							<img class="img-circle" src ="request.png" >
+							<img class="img-circle" src ="request.jpg" >
 							<br><br><br>
 							<a href="/checkClean"><button type="button" class="btn btn-success btn-lg active">check request</button></a>
 							<br><br><br>

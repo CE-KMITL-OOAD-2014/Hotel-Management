@@ -1,9 +1,9 @@
 <?php 
 class RequestRepository{
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// check if exsit this user by search from DB
+	// check if exsit
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -15,7 +15,7 @@ class RequestRepository{
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// new user
 
-	public static function newRequest(){
+	public function newRequest(){
 		$tmp = new RequestDB();
 		$tmp->save();
 		return $tmp->id;
@@ -23,7 +23,7 @@ class RequestRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	public static function setType($id,$data){
+	public function setType($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->type=$data;
@@ -31,7 +31,7 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setRoom($id,$data){
+	public function setRoom($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->room=$data;
@@ -39,7 +39,7 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setBillNumber($id,$data){
+	public function setBillNumber($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->billNumber=$data;
@@ -47,7 +47,7 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setCustomerServiceID($id,$data){
+	public function setCustomerServiceID($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->customerServiceID=$data;
@@ -55,7 +55,7 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setState($id,$data){
+	public function setState($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->state=$data;
@@ -63,7 +63,7 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setMealID($id,$data){
+	public function setMealID($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->mealID=$data;
@@ -71,7 +71,7 @@ class RequestRepository{
 	 	}
 	 	else{}
 	}
-	public static function setDate($id,$data){
+	public function setDate($id,$data){
 		$tmp = RequestDB::find($id);
 	 	if($tmp!=NULL){
 		 	$tmp->date=$data;
@@ -82,7 +82,7 @@ class RequestRepository{
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	
-	public static function getType($id){
+	public function getType($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->type;
@@ -91,7 +91,7 @@ class RequestRepository{
 			return NULL;
 		}
 	}
-	public static function getRoom($id){
+	public function getRoom($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->room;
@@ -100,7 +100,7 @@ class RequestRepository{
 			return NULL;
 		}
 	}
-	public static function getBillNumber($id){
+	public function getBillNumber($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->billNumber;
@@ -109,7 +109,7 @@ class RequestRepository{
 			return NULL;
 		}
 	}
-	public static function getCustomerServiceID($id){
+	public function getCustomerServiceID($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->customerServiceID;
@@ -118,7 +118,7 @@ class RequestRepository{
 			return NULL;
 		}
 	}
-	public static function getState($id){
+	public function getState($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->state;
@@ -127,7 +127,7 @@ class RequestRepository{
 			return NULL;
 		}
 	}
-	public static function getMealID($id){
+	public function getMealID($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->mealID;
@@ -136,7 +136,7 @@ class RequestRepository{
 			return NULL;
 		}
 	}
-	public static function getDate($id){
+	public function getDate($id){
 		$tmp = RequestDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->date;

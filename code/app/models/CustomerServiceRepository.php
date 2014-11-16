@@ -3,7 +3,7 @@ class CustomerServiceRepository {
 		//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// check if exsit this user by search from DB
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = UserDB::find($id);
 		if($tmp!=NULL){
 			$tmp2 = CustomerServiceDB::find(CustomerServiceRepository::getID($tmp->username));
@@ -22,14 +22,14 @@ class CustomerServiceRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// New User
 
-	public static function newCustomerService(){ 
+	public function newCustomerService(){ 
 		$tmp = new CustomerServiceDB();
 		$tmp->save();
 		return $tmp->id;
 	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-		public static function del($id){ 
+		public function del($id){ 
 		$tmp = CustomerServiceDB::find($id);
 		$tmp->delete();
 	}	
@@ -37,7 +37,7 @@ class CustomerServiceRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get ID of Object by username
 
-	public static function getID($username){
+	public function getID($username){
 		$tmp = UserDB::where('username','=',$username)->get();
 		if(count($tmp)!=0){
 			$tmp = CustomerServiceDB::where('userID','=',$tmp[0]->id)->get();
@@ -52,7 +52,7 @@ class CustomerServiceRepository {
 	}
 
 
-	public static function getIDbyRoom($room){
+	public function getIDbyRoom($room){
 		$tmp = CustomerServiceDB::where('room','=',$room)->get();
 		if(count($tmp)!=0){
 			return $tmp[0]->userID;
@@ -62,7 +62,7 @@ class CustomerServiceRepository {
 		}
 	}
 
-	public static function getIDbyBill($billId){
+	public function getIDbyBill($billId){
 		$tmp = CustomerServiceDB::where('billNumber','=',$billId)->get();
 		
 		if(count($tmp)!=0){
@@ -75,7 +75,7 @@ class CustomerServiceRepository {
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get data from database
 
-	public static function getUserID($id){
+	public function getUserID($id){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->userID;
@@ -84,7 +84,7 @@ class CustomerServiceRepository {
 			return NULL;
 		}		
 	}
-	public static function getState($id){
+	public function getState($id){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->state;
@@ -94,14 +94,9 @@ class CustomerServiceRepository {
 		}		
 	}
 
-	public static function getRoom($id){
+	public function getRoom($id){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
-			//$test = new GlobalDB();
-			//$test->name = 1;
-			//$test->data = $tmp->Room;
-			//$test->save();
-
 			return $tmp->room;
 
 		}
@@ -110,7 +105,7 @@ class CustomerServiceRepository {
 		}		
 	}
 
-	public static function getCleanReqID($id){
+	public function getCleanReqID($id){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->cleanReqID;
@@ -120,7 +115,7 @@ class CustomerServiceRepository {
 		}		
 	}
 
-	public static function getMealReqID($id){
+	public function getMealReqID($id){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->mealReqID;
@@ -130,7 +125,7 @@ class CustomerServiceRepository {
 		}		
 	}
 
-	public static function getBillNumber($id){
+	public function getBillNumber($id){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->billNumber;
@@ -144,7 +139,7 @@ class CustomerServiceRepository {
 	// Seve data to database
 	// all get, set in repo class use it own id in DB, not from parent DB
 
-	public static function setUserID($id,$data){
+	public function setUserID($id,$data){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			$tmp->userID=$data;
@@ -152,7 +147,7 @@ class CustomerServiceRepository {
 		}
 		else {}
 	}
-	public static function setState($id,$data){
+	public function setState($id,$data){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			$tmp->state=$data;
@@ -161,7 +156,7 @@ class CustomerServiceRepository {
 		else {}
 	}
 
-	public static function setRoom($id,$data){
+	public function setRoom($id,$data){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			$tmp->room=$data;
@@ -170,7 +165,7 @@ class CustomerServiceRepository {
 		else {}
 	}
 
-	public static function setCleanReqID($id,$data){
+	public function setCleanReqID($id,$data){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			$tmp->cleanReqID=$data;
@@ -179,7 +174,7 @@ class CustomerServiceRepository {
 		else {}
 	}
 
-	public static function setMealReqID($id,$data){
+	public function setMealReqID($id,$data){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			$tmp->mealReqID=$data;
@@ -188,7 +183,7 @@ class CustomerServiceRepository {
 		else {}
 	}
 
-	public static function setBillNumber($id,$data){
+	public function setBillNumber($id,$data){
 		$tmp = CustomerServiceDB::find($id);
 		if($tmp!=NULL){
 			$tmp->billNumber=$data;

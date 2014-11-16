@@ -18,11 +18,12 @@ class Kitchen extends Staff
 //-----------------------------------------
 // Get Kitchen
 	public function getKitchen($id){
-		if(UserRepository::isExist($id)){
+		$userRepository = new UserRepository();
+		if($userRepository->isExist($id)){
 			$this->getStaff($id);
-
-			$idTmp = StaffRequestRepository::getID($id);
-			$this->setMealId(StaffRequestRepository::getRequestID($idTmp));
+			$staffRequestRepository = new StaffRequestRepository();
+			$idTmp = $staffRequestRepository->getID($id);
+			$this->setMealId($staffRequestRepository->getRequestID($idTmp));
 		}
 		else{
 			
@@ -31,11 +32,11 @@ class Kitchen extends Staff
 //-----------------------------------------
 // Add Meal
 	public function addMeal($data){
-
-		$mealId = MealRepository::newMeal();
-		MealRepository::setName($mealId,$data['name']);
-		MealRepository::setPrice($mealId,$data['price']);
-		MealRepository::setDesc($mealId,$data['desc']);
+		$mealRepository = new MealRepository();
+		$mealId = $mealRepository->newMeal();
+		$mealRepository->setName($mealId,$data['name']);
+		$mealRepository->setPrice($mealId,$data['price']);
+		$mealRepository->setDesc($mealId,$data['desc']);
 	}
 //-----------------------------------------
 
@@ -49,7 +50,8 @@ class Kitchen extends Staff
 		$meal = new Meal();
 		$meal->getMeal($reqTmp->getMealID());
 
-		$billid = BillRepository::newBill();
+		$billRepository = new BillRepository();
+		$billid = $billRepository->newBill();
 		$bill = new Bill();
 		$bill->setId($billid);
 		$bill->setBillNumber($reqTmp->getBillNumber());
@@ -61,7 +63,7 @@ class Kitchen extends Staff
 	}
 
 //-----------------------------------------
-// Add new User 
+
 	public function editMeal($data){
 		$meal =new Meal();
 		$meal->getMeal($data['mealID']);
@@ -72,7 +74,7 @@ class Kitchen extends Staff
 	}
 
 //-----------------------------------------
-// Add new User 
+ 
 	public function deleteMeal($id){
 		$user =new Meal();
 		$user->getMeal($id);

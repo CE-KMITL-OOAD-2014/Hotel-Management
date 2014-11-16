@@ -48,11 +48,12 @@
 //-----------------------------------------
 // get User
 		public function getUser($id){
-			if(UserRepository::isExist($id)){
+			$userRepository = new UserRepository();
+			if($userRepository->isExist($id)){
 				$this->setId($id);
-				$this->setUsername(UserRepository::getUsername($id));
-				$this->setPassword(UserRepository::getPassword($id));
-				$this->setRole(UserRepository::getRole($id));
+				$this->setUsername($userRepository->getUsername($id));
+				$this->setPassword($userRepository->getPassword($id));
+				$this->setRole($userRepository->getRole($id));
 			}
 			else {
 			}
@@ -61,10 +62,11 @@
 //-----------------------------------------
 // save User
 		public function saveToDB(){
-			if(UserRepository::isExist($this->id)){
-				UserRepository::setUsername($this->id,$this->username);
-				UserRepository::setPassword($this->id,$this->password);
-				UserRepository::setRole($this->id,$this->role);
+			$userRepository = new UserRepository();
+			if($userRepository->isExist($this->id)){
+				$userRepository->setUsername($this->id,$this->username);
+				$userRepository->setPassword($this->id,$this->password);
+				$userRepository->setRole($this->id,$this->role);
 			}
 			else {
 			}
@@ -72,27 +74,12 @@
 //-----------------------------------------
 // set Staff
 		public function delFromDB(){
-			if(UserRepository::isExist($this->getId())){
-				UserRepository::del($this->getId());
+			$userRepository = new UserRepository();
+			if($userRepository->isExist($this->getId())){
+				$userRepository->del($this->getId());
 			}
 			else {
 			}
-		}
-//-----------------------------------------
-// coppy constructor
-/*		public function coppyUser($tmp){
-			$this->id=$tmp->getId();
-			$this->role=$tmp->getRole();
-			$this->username=$tmp->getUsername();
-			$this->password=$tmp->getPassword();
-		}
-*/
-//-----------------------------------------
-// print line
-		public function println(){
-			echo 	"Username : ".$this->username.
-					"\nPassword : ".$this->password.
-					"\nRole : ".$this->role."\n";
 		}
 
 //-----------------------------------------

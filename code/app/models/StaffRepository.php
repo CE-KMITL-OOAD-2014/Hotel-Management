@@ -3,7 +3,7 @@ class StaffRepository{
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// check if exsit this user by search from DB
 
-	public static function isExist($id){
+	public function isExist($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return true;
@@ -14,25 +14,23 @@ class StaffRepository{
 	} 
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// New User
 
-	public static function newStaff(){ 
+	public function newStaff(){ 
 		$tmp = new StaffDB();
 		$tmp->save();
 		return $tmp->id;
 	}
 
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
-	// New User
 
-	public static function del($id){ 
+	public function del($id){ 
 		$tmp = StaffDB::find($id);
 		$tmp->delete();
 	}
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get ID of Object by username
 
-	public static function getID($username){
+	public function getID($username){
 		$tmp = UserDB::where('username','=',$username)->get();
 		if(count($tmp)!=0){
 			$tmp = StaffDB::where('userID','=',$tmp[0]->id)->get();
@@ -49,7 +47,7 @@ class StaffRepository{
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 	// get data from database
 
-	public static function getUserID($id){
+	public function getUserID($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->userID;
@@ -58,7 +56,7 @@ class StaffRepository{
 			return NULL;
 		}		
 	}
-	public static function getStaffID($id){
+	public function getStaffID($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->staffID;
@@ -67,7 +65,7 @@ class StaffRepository{
 			return NULL;
 		}		
 	}
-	public static function getName($id){
+	public function getName($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->name;
@@ -76,7 +74,7 @@ class StaffRepository{
 			return NULL;
 		}		
 	}
-	public static function getIDnumber($id){
+	public function getIDnumber($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->IDnumber;
@@ -85,7 +83,7 @@ class StaffRepository{
 			return NULL;
 		}		
 	}
-	public static function getLocation($id){
+	public function getLocation($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->location;
@@ -94,7 +92,7 @@ class StaffRepository{
 			return NULL;
 		}		
 	}
-	public static function getEmail($id){
+	public function getEmail($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->email;
@@ -103,7 +101,7 @@ class StaffRepository{
 			return NULL;
 		}		
 	}
-	public static function getTel($id){
+	public function getTel($id){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			return $tmp->tel;
@@ -115,7 +113,7 @@ class StaffRepository{
 	//- - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	// Seve data to database
 
-	public static function setUserID($id,$data){
+	public function setUserID($id,$data){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			$tmp->userID=$data;
@@ -123,7 +121,7 @@ class StaffRepository{
 		}
 		else {}
 	}
-	public static function setStaffID($id,$data){
+	public function setStaffID($id,$data){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			$tmp->staffID=$data;
@@ -131,7 +129,7 @@ class StaffRepository{
 		}
 		else {}
 	}
-	public static function setName($id,$data){
+	public function setName($id,$data){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			$tmp->name=$data;
@@ -139,7 +137,7 @@ class StaffRepository{
 		}
 		else {}
 	}
-	public static function setIDnumber($id,$data){
+	public function setIDnumber($id,$data){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			$tmp->IDnumber=$data;
@@ -147,7 +145,7 @@ class StaffRepository{
 		}
 		else {}
 	}
-	public static function setLocation($id,$data){
+	public function setLocation($id,$data){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			$tmp->location=$data;
@@ -155,7 +153,7 @@ class StaffRepository{
 		}
 		else {}
 	}
-	public static function setEmail($id,$data){
+	public function setEmail($id,$data){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			$tmp->email=$data;
@@ -163,7 +161,7 @@ class StaffRepository{
 		}
 		else {}
 	}
-	public static function setTel($id,$data){
+	public function setTel($id,$data){
 		$tmp = StaffDB::find($id);
 		if($tmp!=NULL){
 			$tmp->tel=$data;
